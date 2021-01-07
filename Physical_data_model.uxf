@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>370</x>
+      <y>380</y>
+      <w>210</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Pracownicy
+--
++id : int	&lt;pk&gt;
++imie : varchar(90)
++nazwisko : varchar(90)
++ funkcja : varchar(90)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>210</y>
+      <w>210</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Zespoły
+--
++id : int	&lt;pk&gt;
++zarzadca : int &lt;fk&gt;
++nazwa : varchar(90)</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
