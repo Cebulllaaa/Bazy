@@ -1,35 +1,91 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>10</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>370</x>
-      <y>380</y>
-      <w>210</w>
-      <h>100</h>
+      <x>217</x>
+      <y>532</y>
+      <w>147</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>Pracownicy
 --
-+id : int	&lt;pk&gt;
++id : int	                                &lt;pk&gt;
 +imie : varchar(90)
 +nazwisko : varchar(90)
-+ funkcja : varchar(90)</panel_attributes>
++ funkcja : varchar(90)
++ zespol : int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>80</x>
-      <y>210</y>
-      <w>210</w>
-      <h>80</h>
+      <x>217</x>
+      <y>364</y>
+      <w>147</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>Zespoły
 --
-+id : int	&lt;pk&gt;
-+zarzadca : int &lt;fk&gt;
++id : int	                                &lt;pk&gt;
++zarzadca_zespolu : int       &lt;fk1&gt;
++nazwa : varchar(90)
++dział : int                          &lt;fk2&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>217</x>
+      <y>231</y>
+      <w>147</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>Działy
+--
++id : int                                &lt;pk&gt;
++zarzadca_dzialu : int          &lt;fk&gt;
 +nazwa : varchar(90)</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>532</x>
+      <y>539</y>
+      <w>147</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>Dostawcy
+--
++id: int                                &lt;pk&gt;
++nazwa : varchar(90)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>273</x>
+      <y>287</y>
+      <w>91</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Zespoły w dziale</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>427</y>
+      <w>119</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Pracownicy w zespole</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
   </element>
 </diagram>
