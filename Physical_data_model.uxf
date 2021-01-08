@@ -5,16 +5,15 @@
     <id>UMLClass</id>
     <coordinates>
       <x>602</x>
-      <y>448</y>
+      <y>539</y>
       <w>147</w>
-      <h>98</h>
+      <h>91</h>
     </coordinates>
     <panel_attributes>Pracownicy
 --
 +id_pracownika : int	            &lt;pk&gt;
 +imie : varchar(90)
 +nazwisko : varchar(90)
-+ funkcja : varchar(90)
 + wyplata : int
 + godziny_tygodniowo : int</panel_attributes>
     <additional_attributes/>
@@ -23,39 +22,40 @@
     <id>UMLClass</id>
     <coordinates>
       <x>602</x>
-      <y>203</y>
-      <w>147</w>
-      <h>84</h>
+      <y>294</y>
+      <w>175</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>Zespoły
 --
-+id_zespolu : int	                  &lt;pk&gt;
-+zarzadca_zespolu : int     &lt;fk1&gt;
-+nazwa : varchar(90)
-+dział : int                           &lt;fk2&gt;
-+budżet : int</panel_attributes>
++id_zespolu : int	                           &lt;pk&gt;
++zarzadca_zespolu : int               &lt;fk1&gt;
++nazwa_zespolu : varchar(90)
++dział : int                                    &lt;fk2&gt;
++budżet : int
++godziny_tygodniowo : int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>602</x>
-      <y>70</y>
+      <y>161</y>
       <w>147</w>
       <h>63</h>
     </coordinates>
     <panel_attributes>Działy
 --
 +id_dzialu : int                     &lt;pk&gt;
-+zarzadca_dzialu : int          &lt;fk&gt;
-+nazwa : varchar(90)</panel_attributes>
++zarzadca_dzialu : int         &lt;fk1&gt;
++nazwa_działu : varchar(90)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>665</x>
-      <y>126</y>
+      <y>217</y>
       <w>91</w>
       <h>91</h>
     </coordinates>
@@ -67,19 +67,19 @@ Zespoły w dziale</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>672</x>
-      <y>280</y>
+      <y>378</y>
       <w>245</w>
-      <h>91</h>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 Pracownicy  w zespolu</panel_attributes>
-    <additional_attributes>330.0;110.0;10.0;10.0</additional_attributes>
+    <additional_attributes>330.0;100.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>238</y>
+      <y>329</y>
       <w>154</w>
       <h>56</h>
     </coordinates>
@@ -97,7 +97,7 @@ layer=2
     <id>Relation</id>
     <coordinates>
       <x>70</x>
-      <y>287</y>
+      <y>378</y>
       <w>546</w>
       <h>217</h>
     </coordinates>
@@ -109,7 +109,7 @@ Pracownicy którzy są zarządcami</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>56</x>
-      <y>91</y>
+      <y>182</y>
       <w>560</w>
       <h>161</h>
     </coordinates>
@@ -121,7 +121,7 @@ Zarządcy dla poszczególnych działów</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>413</x>
-      <y>623</y>
+      <y>714</y>
       <w>147</w>
       <h>49</h>
     </coordinates>
@@ -135,7 +135,7 @@ Zarządcy dla poszczególnych działów</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>791</x>
-      <y>623</y>
+      <y>714</y>
       <w>147</w>
       <h>49</h>
     </coordinates>
@@ -149,55 +149,53 @@ Zarządcy dla poszczególnych działów</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>462</x>
-      <y>539</y>
+      <y>623</y>
       <w>217</w>
-      <h>98</h>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 Hash'e haseł pracowników</panel_attributes>
-    <additional_attributes>10.0;120.0;290.0;10.0</additional_attributes>
+    <additional_attributes>10.0;130.0;290.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>672</x>
-      <y>539</y>
+      <y>623</y>
       <w>182</w>
-      <h>98</h>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 Loginy pracowników</panel_attributes>
-    <additional_attributes>240.0;120.0;10.0;10.0</additional_attributes>
+    <additional_attributes>240.0;130.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>882</x>
-      <y>203</y>
+      <x>1015</x>
+      <y>287</y>
       <w>147</w>
-      <h>63</h>
+      <h>56</h>
     </coordinates>
     <panel_attributes>Projekty
 --
 +id_projektu : int                  &lt;pk&gt;
-+id_zespolu : int                   &lt;fk&gt;
-+nazwa : varchar(90)
-+status : varchar(90)</panel_attributes>
++nazwa_projektu : varchar(90)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1029</x>
-      <y>56</y>
+      <x>1141</x>
+      <y>147</y>
       <w>154</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>Zlecenia
 --
 +id_zlecenia : int                    &lt;pk&gt;
-+id_projektu : int                    &lt;fk1&gt;
-+id_klienta : int                     &lt;fk1&gt;
++projekt : int                         &lt;fk1&gt;
++klient : int                          &lt;fk2&gt;
 +wartosc_zlecenia : int
 
 </panel_attributes>
@@ -206,58 +204,58 @@ Loginy pracowników</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1232</x>
-      <y>217</y>
+      <x>1295</x>
+      <y>308</y>
       <w>147</w>
-      <h>63</h>
+      <h>49</h>
     </coordinates>
     <panel_attributes>Klienci
 --
 +id_klienta : int                  &lt;pk&gt;
-+nazwa : varchar(90)</panel_attributes>
++nazwa_klienta : varchar(90)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1141</x>
-      <y>119</y>
-      <w>175</w>
+      <x>1253</x>
+      <y>210</y>
+      <w>126</w>
       <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 Klienci zlecenia</panel_attributes>
-    <additional_attributes>230.0;140.0;10.0;10.0</additional_attributes>
+    <additional_attributes>160.0;140.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>945</x>
-      <y>119</y>
-      <w>133</w>
-      <h>98</h>
+      <x>1078</x>
+      <y>210</y>
+      <w>112</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 Projekty w zleceniu</panel_attributes>
-    <additional_attributes>10.0;120.0;170.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;140.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>742</x>
-      <y>231</y>
-      <w>154</w>
-      <h>28</h>
+      <x>770</x>
+      <y>203</y>
+      <w>147</w>
+      <h>147</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 Projekty zespołów</panel_attributes>
-    <additional_attributes>200.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>140.0;10.0;10.0;190.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>343</x>
-      <y>280</y>
+      <y>371</y>
       <w>154</w>
       <h>56</h>
     </coordinates>
@@ -266,7 +264,7 @@ bg=blue
 layer=2
 --
 +id_pracownika : int        &lt;pk,fk1&gt;
-+id_działu : int                 &lt;pk,fk1&gt;    
++id_zespolu : int                 &lt;pk,fk1&gt;    
 
 </panel_attributes>
     <additional_attributes/>
@@ -275,7 +273,7 @@ layer=2
     <id>Relation</id>
     <coordinates>
       <x>427</x>
-      <y>329</y>
+      <y>420</y>
       <w>189</w>
       <h>175</h>
     </coordinates>
@@ -287,7 +285,7 @@ Pracownicy którzy są zarządcami</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>406</x>
-      <y>210</y>
+      <y>301</y>
       <w>210</w>
       <h>84</h>
     </coordinates>
@@ -299,26 +297,55 @@ Zarządcy dla poszczególnych zespołów</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>847</x>
-      <y>357</y>
+      <y>448</y>
       <w>147</w>
-      <h>49</h>
+      <h>56</h>
     </coordinates>
     <panel_attributes>Grupy_zespołów
 --
-+id_zespolu : int	                   &lt;fk&gt;
-+id_pracownika : int             &lt;fk&gt;</panel_attributes>
++zespol : int	                        &lt;fk1&gt;
++pracownik : int                  &lt;fk2&gt;
++status : varchar(90)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>665</x>
-      <y>399</y>
+      <y>497</y>
       <w>203</w>
-      <h>63</h>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 Zespoły pracownika</panel_attributes>
-    <additional_attributes>10.0;70.0;270.0;10.0</additional_attributes>
+    <additional_attributes>10.0;60.0;270.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>861</x>
+      <y>147</y>
+      <w>147</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>Grupy_projektów
+--
++projekt : int                       &lt;fk1&gt;
++zespol : int                        &lt;fk2&gt;
++status : varchar(90)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>938</x>
+      <y>203</y>
+      <w>140</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Zespoły wykonujące 
+dany projekt</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;150.0</additional_attributes>
   </element>
 </diagram>
