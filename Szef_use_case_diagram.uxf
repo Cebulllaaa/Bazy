@@ -4,9 +4,9 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>0</x>
+      <x>10</x>
       <y>150</y>
-      <w>100</w>
+      <w>80</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>Szef firmy</panel_attributes>

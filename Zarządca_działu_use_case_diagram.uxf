@@ -368,7 +368,7 @@ działu
       <h>80</h>
     </coordinates>
     <panel_attributes>Uruchomienie
-procedury
+funkcji
 "Sprawdź_bilans"
 </panel_attributes>
     <additional_attributes/>
@@ -567,69 +567,8 @@ działu
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>110</x>
+      <x>100</x>
       <y>960</y>
-      <w>280</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>Zmień budżet
-zespołu
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>70</x>
-      <y>230</y>
-      <w>60</w>
-      <h>790</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes>10.0;10.0;40.0;770.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>370</x>
-      <y>970</y>
-      <w>260</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=.&gt;
-&lt;&lt;includes&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;240.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLUseCase</id>
-    <coordinates>
-      <x>610</x>
-      <y>960</y>
-      <w>280</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>Uruchomienie funkcji transakcyjnej
-"Zmień_budżet_zespołu"
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>860</x>
-      <y>200</y>
-      <w>300</w>
-      <h>800</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes>280.0;10.0;10.0;780.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLUseCase</id>
-    <coordinates>
-      <x>80</x>
-      <y>1060</y>
       <w>280</w>
       <h>80</h>
     </coordinates>
@@ -644,17 +583,17 @@ zespołu
     <coordinates>
       <x>70</x>
       <y>230</y>
-      <w>30</w>
-      <h>890</h>
+      <w>50</w>
+      <h>790</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>10.0;10.0;10.0;870.0</additional_attributes>
+    <additional_attributes>10.0;10.0;30.0;770.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>340</x>
-      <y>1070</y>
+      <x>360</x>
+      <y>970</y>
       <w>260</w>
       <h>40</h>
     </coordinates>
@@ -665,8 +604,8 @@ zespołu
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>580</x>
-      <y>1050</y>
+      <x>600</x>
+      <y>950</y>
       <w>280</w>
       <h>80</h>
     </coordinates>
@@ -678,12 +617,12 @@ zespołu
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>850</x>
+      <x>870</x>
       <y>200</y>
-      <w>310</w>
-      <h>910</h>
+      <w>290</w>
+      <h>810</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>290.0;10.0;10.0;890.0</additional_attributes>
+    <additional_attributes>270.0;10.0;10.0;790.0</additional_attributes>
   </element>
 </diagram>
