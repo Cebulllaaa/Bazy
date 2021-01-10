@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
+  <help_text>// Uncomment the following line to change the fontsize and font:
+fontsize=14
+// fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Welcome to UMLet!
+//
+// Double-click on elements to add them to the diagram, or to copy them
+// Edit elements by modifying the text in this panel
+// Hold Ctrl to select multiple elements
+// Use Ctrl+mouse to select via lasso
+//
+// Use +/- or Ctrl+mouse wheel to zoom
+// Drag a whole relation at its central square icon
+//
+// Press Ctrl+C to copy the whole diagram to the system clipboard (then just paste it to, eg, Word)
+// Edit the files in the "palettes" directory to create your own element palettes
+//
+// Select "Custom Elements &gt; New..." to create new element types
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// This text will be stored with each diagram;  use it for notes.</help_text>
   <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>329</x>
-      <y>462</y>
-      <w>231</w>
+      <x>378</x>
+      <y>413</y>
+      <w>364</w>
       <h>175</h>
     </coordinates>
     <panel_attributes>Pracownicy
@@ -23,17 +47,17 @@
 +dodaj_do_zespołu(zesp : int, cz : int) : void
 +usuń_z_zespołu(zesp : int, cz : int) : void
 +przenieś_z_zespołu(zesp : int, cz : int) : void
-+korekta_danych() : void
-+zwolnij_pracownika() : void</panel_attributes>
++korekta_danych(prac : int, atr : varchar(90), nowy : varchar(90)) : void
++zwolnij_pracownika(prac : int) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>588</x>
-      <y>462</y>
-      <w>280</w>
-      <h>161</h>
+      <x>770</x>
+      <y>413</y>
+      <w>329</w>
+      <h>175</h>
     </coordinates>
     <panel_attributes>Zespoły
 --
@@ -48,15 +72,17 @@
 +ustal_czas_pracy(zesp : int, czas : unsigned int) : void
 +zatwierdź_wynagrodzenie(zesp : int) : void
 +zatwierdź_czas_pracy(zesp : int) : void
-+ZM_zarzadcy_zespołu() : void</panel_attributes>
++ZM_zarzadcy_zespołu(zesp : int, cz : int dz : unsigned int) : void
++utworz_zespol(cz : int, nazwa : varchar, dz : unsigned int) : void
++rozwiaz_zespol(zesp : int, dz : unsigned int) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>700</x>
+      <x>721</x>
       <y>777</y>
-      <w>182</w>
+      <w>343</w>
       <h>91</h>
     </coordinates>
     <panel_attributes>Działy
@@ -65,45 +91,45 @@
 +zarzadca_dzialu : int         &lt;fk1&gt;
 +nazwa_działu : varchar(90)
 --
-+dodaj_dział() : void
-+ZM_zarządcy_działu() : void
-+zamknij_dział() : void</panel_attributes>
++dodaj_dział(prac : int, nazwa : varchar(90)) : void
++ZM_zarządcy_działu(dz : unsigned int, nazwa : varchar(90)) : void
++zamknij_dział(dz : unsigned int) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>714</x>
-      <y>616</y>
-      <w>91</w>
-      <h>175</h>
+      <x>896</x>
+      <y>581</y>
+      <w>105</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 m1=1
 m2=1..*
 Zespoły w dziale</panel_attributes>
-    <additional_attributes>10.0;230.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;280.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>714</x>
-      <y>238</y>
-      <w>70</w>
-      <h>238</h>
+      <x>896</x>
+      <y>203</y>
+      <w>77</w>
+      <h>224</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 m1=1
 m2=*
 Pracownicy
 w zespole</panel_attributes>
-    <additional_attributes>10.0;320.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;300.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>504</y>
+      <x>84</x>
+      <y>469</y>
       <w>168</w>
       <h>56</h>
     </coordinates>
@@ -120,22 +146,22 @@ layer=2
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>70</x>
-      <y>553</y>
-      <w>644</w>
-      <h>273</h>
+      <x>154</x>
+      <y>518</y>
+      <w>581</w>
+      <h>308</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;
 m1=1
 m2=1
 Zarządcy dla poszczególnych działów</panel_attributes>
-    <additional_attributes>900.0;360.0;10.0;360.0;10.0;10.0</additional_attributes>
+    <additional_attributes>810.0;410.0;10.0;410.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>189</x>
-      <y>287</y>
+      <x>371</x>
+      <y>231</y>
       <w>182</w>
       <h>49</h>
     </coordinates>
@@ -148,8 +174,8 @@ Zarządcy dla poszczególnych działów</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>189</x>
-      <y>343</y>
+      <x>371</x>
+      <y>287</y>
       <w>154</w>
       <h>49</h>
     </coordinates>
@@ -162,24 +188,24 @@ Zarządcy dla poszczególnych działów</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>343</x>
-      <y>329</y>
-      <w>77</w>
-      <h>147</h>
+      <x>525</x>
+      <y>273</y>
+      <w>84</w>
+      <h>154</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 m1=1
 m2=1
 Hash'e haseł
 pracowników</panel_attributes>
-    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;200.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>763</x>
-      <y>91</y>
-      <w>203</w>
+      <x>945</x>
+      <y>56</y>
+      <w>385</w>
       <h>175</h>
     </coordinates>
     <panel_attributes>Projekty
@@ -193,19 +219,19 @@ pracowników</panel_attributes>
 --
 +projekty_pracownika(prac : int) : void
 +projekty_zespołu(zesp : int) : void
-+utworz_projekt() : void
-+ustal_budżet_projektu() : void
-+sprawdź_bilans() : int
-+zmień_status() : void
-+zatwierdź_budżet() : void</panel_attributes>
++utworz_projekt(nazwa : varchar(90), zl : unsigned int, zesp : int) : void
++ustal_budżet_projektu(pr : unsigned int, wart : int, dz : unsigned int) : void
++sprawdź_bilans(dz : unsigned int) : int
++zmień_status(pr : unsigned int, st : varchar(90), dz : unsigned int) : void
++zatwierdź_budżet(dz : unsigned int) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>896</x>
-      <y>343</y>
-      <w>168</w>
+      <x>1071</x>
+      <y>301</y>
+      <w>350</w>
       <h>105</h>
     </coordinates>
     <panel_attributes>Zlecenia
@@ -215,16 +241,16 @@ pracowników</panel_attributes>
 +wartosc_zlecenia : int
 +dzial : int
 --
-+dodaj_zlecenie() : void
-+zlecenie_info() : void
-+przeniesienie_zlecenia() : void</panel_attributes>
++dodaj_zlecenie(kl : unsigned int, wart : int, dz : unsigned int) : void
++zlecenie_info(zl : unsigned int, dz : unsigned int) : void
++przeniesienie_zlecenia(zl : unsigned int, dz : unsigned int) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>889</x>
-      <y>518</y>
+      <x>1183</x>
+      <y>490</y>
       <w>189</w>
       <h>63</h>
     </coordinates>
@@ -233,42 +259,42 @@ pracowników</panel_attributes>
 +id_klienta : int                      &lt;pk&gt;
 +nazwa_klienta : varchar(90)
 --
-+dodaj_klienta() : void</panel_attributes>
++dodaj_klienta(nazwa : varchar(90)) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>973</x>
-      <y>441</y>
-      <w>84</w>
-      <h>91</h>
+      <x>1267</x>
+      <y>399</y>
+      <w>98</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 m1=1
 m2=*
 Klienci zlecenia</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>917</x>
-      <y>259</y>
-      <w>105</w>
-      <h>98</h>
+      <x>1099</x>
+      <y>224</y>
+      <w>112</w>
+      <h>91</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;
+    <panel_attributes>lt=&lt;&lt;&lt;-
 m1=1
 m2=*
 Projekty w zleceniu</panel_attributes>
-    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>490</x>
-      <y>280</y>
+      <x>672</x>
+      <y>231</y>
       <w>168</w>
       <h>63</h>
     </coordinates>
@@ -285,8 +311,8 @@ layer=2
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>308</x>
-      <y>91</y>
+      <x>490</x>
+      <y>56</y>
       <w>420</w>
       <h>154</h>
     </coordinates>
@@ -303,61 +329,62 @@ layer=2
 +członkowe_zespołu(zesp : int) : void
 +ustal_wynagrodzenie(zesp : int, cz : int, wyn : unsigned int) : void
 +ustal_czas_pracy_członka(zesp : int, czas : unsigned int, wyn : unsigned int) : void
-+korekta_historii() : void</panel_attributes>
++korekta_historii(prac : int, zesp : int, atr : varchar(90), nowy : varchar(90)) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>413</x>
-      <y>238</y>
-      <w>70</w>
-      <h>238</h>
+      <x>595</x>
+      <y>203</y>
+      <w>77</w>
+      <h>224</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 m1=1
 m2=*
 Zespoły
 pracownika</panel_attributes>
-    <additional_attributes>10.0;320.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;300.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>777</x>
-      <y>259</y>
-      <w>105</w>
-      <h>217</h>
+      <x>959</x>
+      <y>224</y>
+      <w>112</w>
+      <h>203</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 m1=1
 m2=1
 Zespoł wykonujący
 dany projekt</panel_attributes>
-    <additional_attributes>10.0;290.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;270.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>819</x>
-      <y>630</y>
-      <w>168</w>
-      <h>70</h>
+      <x>1015</x>
+      <y>616</y>
+      <w>322</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>Zakupy
 --
 +id_zakupu : int              &lt;pk&gt;
 +dział : int                       &lt;fk1&gt;
 +dostawca : int                &lt;fk2&gt;
++produkt : varchar(90)
 +wartosc_zakupu : int
-
-</panel_attributes>
+--
++zakup_produkt(nazwa : varchar(90), dost : varchar(90)) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>917</x>
+      <x>1099</x>
       <y>777</y>
       <w>210</w>
       <h>49</h>
@@ -371,37 +398,37 @@ dany projekt</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>945</x>
-      <y>693</y>
-      <w>98</w>
-      <h>98</h>
+      <x>1141</x>
+      <y>707</y>
+      <w>105</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 m1=1
 m2=*
 Dostawcy zakupu</panel_attributes>
-    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>847</x>
-      <y>693</y>
-      <w>91</w>
-      <h>98</h>
+      <x>1029</x>
+      <y>707</y>
+      <w>98</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 m1=1
 m2=*
 Kupujące działy</panel_attributes>
-    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>609</x>
-      <y>336</y>
-      <w>91</w>
+      <x>791</x>
+      <y>287</y>
+      <w>98</w>
       <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;
@@ -415,9 +442,9 @@ zespołów</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>161</x>
-      <y>518</y>
-      <w>182</w>
+      <x>245</x>
+      <y>483</y>
+      <w>147</w>
       <h>35</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
@@ -425,36 +452,52 @@ m1=1
 m2=1
 Pracownicy którzy
 są zarządcami</panel_attributes>
-    <additional_attributes>240.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>196</x>
-      <y>385</y>
-      <w>147</w>
-      <h>126</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-m1=1
-m2=1
-Loginy pracowników</panel_attributes>
-    <additional_attributes>190.0;150.0;10.0;150.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>518</x>
-      <y>336</y>
-      <w>84</w>
+      <x>700</x>
+      <y>287</y>
+      <w>91</w>
       <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-m1=1
+m1=0..1
 m2=1
 Pracownicy
 którzy
 są zarządcami</panel_attributes>
     <additional_attributes>10.0;180.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>987</x>
+      <y>399</y>
+      <w>147</w>
+      <h>392</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m1=1
+m2=*
+Zlecenia podjęte
+przez dział</panel_attributes>
+    <additional_attributes>10.0;540.0;10.0;290.0;180.0;290.0;180.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>434</x>
+      <y>329</y>
+      <w>84</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m1=1
+m2=1
+Loginy
+pracowników</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
