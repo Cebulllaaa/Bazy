@@ -2,3 +2,5 @@
 /data-sources.json
 /project-metadata.json
 /.project-metadata.json.bak
+/.data-sources.json.bak
+/.credentials-config.json.bak
