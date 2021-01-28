@@ -1,6 +1,7 @@
 package Bazy_danych.Aplikacja;
 
-import Bazy_danych.Aplikacja.Bezpieczenstwo.*;
+import Bazy_danych.Aplikacja.Bezpieczenstwo.Acces;
+import Bazy_danych.Aplikacja.Bezpieczenstwo.Sign_in_Proxy;
 import Bazy_danych.Aplikacja.mariadb.Mariadb;
 
 import java.util.ArrayList;
@@ -20,8 +21,8 @@ public class App {
 		 *TODO Ustalenie kto loguje sie do aplikacji i wywolanie odpowiedniej funkcji
 		 * na podstawie zmiennych login i password
 		 */
-		login = "Zespol A";
-		password = DigestUtils.md5Hex("123");
+		login = "admin";
+		password = DigestUtils.md5Hex("admin");
 		app.sign_in(login, password);
 	}
 	private void sign_in(String x, String y) {
@@ -36,6 +37,7 @@ public class App {
 		else {
 			System.out.println("Pomyslnie zalogowano do aplikacji");
 			acces_view();
+			UI();
 		}
 	}
 	private void acces_view() {
@@ -50,5 +52,8 @@ public class App {
 	}
 	private void close_connection() {
 		connection.close_connection();
+	}
+	private void UI() {
+		connection = connection.getUI();
 	}
 }

@@ -7,6 +7,7 @@ import Bazy_danych.Aplikacja.mariadb.MariadbService;
 
 public class Sign_in_Proxy extends Mariadb{
 	private MariadbService service;
+	private UI_Proxy proxy;
 	
 	public Sign_in_Proxy(String x, String y) {
 		this.login =x;
@@ -22,6 +23,7 @@ public class Sign_in_Proxy extends Mariadb{
 		int x = service.sign_in();
 		setAcces();
 		setIDs("");
+		setUI();
 		service.close_connection();
 		service = null;
 		return x;
@@ -34,7 +36,7 @@ public class Sign_in_Proxy extends Mariadb{
 
 	@Override
 	public void estabilish_connection(String x, String y) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -60,4 +62,16 @@ public class Sign_in_Proxy extends Mariadb{
 		IDs = service.getIDs();
 		
 	}
+
+	@Override
+	protected void setUI() {
+		proxy = new UI_Proxy(service.getAcces(),service.getIDs());
+		
+	}
+
+	@Override
+	public UI_Proxy getUI() {
+		return proxy;
+	}
+
 }

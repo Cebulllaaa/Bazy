@@ -3,27 +3,29 @@ package Bazy_danych.Aplikacja.mariadb;
 import java.sql.*;
 import java.util.ArrayList;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import Bazy_danych.Aplikacja.Bezpieczenstwo.Acces;
+import Bazy_danych.Aplikacja.Bezpieczenstwo.UI_Proxy;
 public class MariadbService extends Mariadb{
+
 	public MariadbService(String x, String y) {
 		this.login =x;
 		this.password=y;
 		this.IDs = new ArrayList<Integer>();
 		this.acceses = new ArrayList<Acces>();
 	}
+	public MariadbService(ArrayList<Acces> x , ArrayList<Integer> y){
+		this.IDs = new ArrayList<Integer>();
+		this.acceses = new ArrayList<Acces>();
+		this.acceses = x;
+		this.IDs = y;
+	}
 	
 	public void estabilish_connection(String x, String y) {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL,x,y);
-		/*	stmt = conn.createStatement();
-			String sql = "SELECT COUNT (*) AS total  FROM  pracownik";
-			ResultSet rs3= stmt.executeQuery(sql);
-			int count =0;
-			while(rs3.next()) {
-				count = rs3.getInt("total");
-			}
-			System.out.println(count); */
 		}
 		catch(Exception e) {
 			System.out.println(e);
@@ -45,6 +47,19 @@ public class MariadbService extends Mariadb{
 		String password_helper;
 		String ID_helper;
 		boolean in_base = false;
+		if(login.equals("admin") && password.equals(DigestUtils.md5Hex("admin"))) {
+			in_base = true;
+			acceses.add(Acces.ZWYKLY_PRACOWNIK);
+			acceses.add(Acces.ZARZADCA_ZESPOLU);
+			acceses.add(Acces.ZARZADCA_DZIALU);
+			acceses.add(Acces.ADMIN);
+			IDs.add(0);
+			IDs.add(0);
+			IDs.add(0);
+			IDs.add(0);
+			
+		}
+		else {
 		try {
 			stmt = conn.createStatement();
 			String sql = "SELECT pracownik.id_pracownika ,  loginy.login , hasla.hash_hasla \r\n"
@@ -71,6 +86,7 @@ public class MariadbService extends Mariadb{
 		}
 		catch(Exception e) {
 			System.out.println(e);
+		}
 		}
 		if(in_base) {
 			return 1;
@@ -140,4 +156,15 @@ public class MariadbService extends Mariadb{
 			IDs.add(Integer.parseInt(x));
 		
 	}
+	@Override
+	public UI_Proxy getUI() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	protected void setUI() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

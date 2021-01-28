@@ -5,6 +5,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import Bazy_danych.Aplikacja.Bezpieczenstwo.Acces;
+import Bazy_danych.Aplikacja.Bezpieczenstwo.UI_Proxy;
 
 public abstract class Mariadb {
 	protected static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
@@ -22,5 +23,7 @@ public abstract class Mariadb {
 	protected abstract void setAcces();
 	protected abstract void setIDs(String x);
 	protected ArrayList<Integer> IDs;
+	public abstract UI_Proxy getUI();
+	protected abstract void setUI();
 	
 }
