@@ -18,6 +18,9 @@ public abstract class Mariadb {
 	public abstract void close_connection();
 	public abstract int sign_in();
 	public abstract ArrayList<Acces> getAcces();
+	public abstract ArrayList<Integer> getIDs();
 	protected abstract void setAcces();
+	protected abstract void setIDs(String x);
+	protected ArrayList<Integer> IDs;
 	
 }

@@ -12,13 +12,16 @@ public class Sign_in_Proxy extends Mariadb{
 		this.login =x;
 		this.password = y;
 		this.service = new MariadbService(x,y);
+		this.IDs = new ArrayList<Integer>();
+		this.acceses = new ArrayList<Acces>();
 	}
 	
 	@Override
 	public int sign_in() {
 		service.estabilish_connection("BazyUser","123");
 		int x = service.sign_in();
-		acceses = service.getAcces();
+		setAcces();
+		setIDs("");
 		service.close_connection();
 		service = null;
 		return x;
@@ -37,13 +40,24 @@ public class Sign_in_Proxy extends Mariadb{
 
 	@Override
 	public void close_connection() {
-		// TODO Auto-generated method stub
+		service.close_connection();
 		
 	}
 
 	@Override
 	protected void setAcces() {
-		// TODO Auto-generated method stub
+		acceses = service.getAcces();
+		
+	}
+
+	@Override
+	public ArrayList<Integer> getIDs() {
+		return IDs;
+	}
+
+	@Override
+	protected void setIDs(String x) {
+		IDs = service.getIDs();
 		
 	}
 }
