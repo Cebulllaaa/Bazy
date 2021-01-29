@@ -338,7 +338,6 @@ public class Procedures_manager {
 				id_prac = rs3.getInt("total");
 				id_prac = id_prac+1;
 			}
-			System.out.println(id_prac);
 			sql = "CALL  Dodaj_pracownika(?,?)";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, imie);

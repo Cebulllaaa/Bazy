@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `działy` (
   CONSTRAINT `FK_działy_pracownik` FOREIGN KEY (`zarządca_działu`) REFERENCES `pracownik` (`id_pracownika`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.działy: ~4 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.działy: ~3 rows (około)
 DELETE FROM `działy`;
 /*!40000 ALTER TABLE `działy` DISABLE KEYS */;
 INSERT INTO `działy` (`id_działu`, `zarządca_działu`, `nazwa_działu`) VALUES
@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `grupy_zespołów` (
   CONSTRAINT `FK_grupy_zespołów_zespoły` FOREIGN KEY (`zespoł`) REFERENCES `zespoły` (`id_zespołu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.grupy_zespołów: ~11 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.grupy_zespołów: ~59 rows (około)
 DELETE FROM `grupy_zespołów`;
 /*!40000 ALTER TABLE `grupy_zespołów` DISABLE KEYS */;
 INSERT INTO `grupy_zespołów` (`zespoł`, `pracownik`, `status`, `wynagrodzenie`, `godziny`) VALUES
@@ -243,7 +243,8 @@ INSERT INTO `grupy_zespołów` (`zespoł`, `pracownik`, `status`, `wynagrodzenie
 	(15, 19, 'Obecny', 0, 0),
 	(15, 21, 'Obecny', 0, 0),
 	(15, 23, 'Obecny', 0, 0),
-	(15, 31, 'Obecny', 0, 0);
+	(15, 31, 'Obecny', 0, 0),
+	(15, 44, 'Obecny', 0, 0);
 /*!40000 ALTER TABLE `grupy_zespołów` ENABLE KEYS */;
 
 -- Zrzut struktury tabela aplikacja_baza.hasla
@@ -253,9 +254,9 @@ CREATE TABLE IF NOT EXISTS `hasla` (
   `hash_hasla` varchar(90) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_pracownika`),
   CONSTRAINT `FK_hasla_pracownik` FOREIGN KEY (`id_pracownika`) REFERENCES `pracownik` (`id_pracownika`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.hasla: ~49 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.hasla: ~45 rows (około)
 DELETE FROM `hasla`;
 /*!40000 ALTER TABLE `hasla` DISABLE KEYS */;
 INSERT INTO `hasla` (`id_pracownika`, `hash_hasla`) VALUES
@@ -307,7 +308,9 @@ INSERT INTO `hasla` (`id_pracownika`, `hash_hasla`) VALUES
 	(47, 'c90c0da7690d5c10ab457c0968591914'),
 	(48, 'c90c0da7690d5c10ab457c0968591914'),
 	(49, 'c90c0da7690d5c10ab457c0968591914'),
-	(50, '4e4d6c332b6fe62a63afe56171fd3725');
+	(50, '4e4d6c332b6fe62a63afe56171fd3725'),
+	(51, '207023ccb44feb4d7dadca005ce29a64'),
+	(52, '207023ccb44feb4d7dadca005ce29a64');
 /*!40000 ALTER TABLE `hasla` ENABLE KEYS */;
 
 -- Zrzut struktury tabela aplikacja_baza.klienci
@@ -389,9 +392,9 @@ CREATE TABLE IF NOT EXISTS `loginy` (
   `login` varchar(90) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_pracownika`),
   CONSTRAINT `FK_loginy_pracownik` FOREIGN KEY (`id_pracownika`) REFERENCES `pracownik` (`id_pracownika`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.loginy: ~49 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.loginy: ~45 rows (około)
 DELETE FROM `loginy`;
 /*!40000 ALTER TABLE `loginy` DISABLE KEYS */;
 INSERT INTO `loginy` (`id_pracownika`, `login`) VALUES
@@ -443,7 +446,9 @@ INSERT INTO `loginy` (`id_pracownika`, `login`) VALUES
 	(47, 'Ogr'),
 	(48, 'Artysta'),
 	(49, 'Siwy'),
-	(50, 'Ostatni');
+	(50, 'Ostatni'),
+	(51, 'Przyklad'),
+	(52, 'Piec');
 /*!40000 ALTER TABLE `loginy` ENABLE KEYS */;
 
 -- Zrzut struktury widok aplikacja_baza.pracownicy
@@ -466,9 +471,9 @@ CREATE TABLE IF NOT EXISTS `pracownik` (
   `wypłata` int(11) NOT NULL DEFAULT 0,
   `godziny_tygodniowo` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_pracownika`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.pracownik: ~50 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.pracownik: ~45 rows (około)
 DELETE FROM `pracownik`;
 /*!40000 ALTER TABLE `pracownik` DISABLE KEYS */;
 INSERT INTO `pracownik` (`id_pracownika`, `imie`, `nazwisko`, `wypłata`, `godziny_tygodniowo`) VALUES
@@ -521,7 +526,9 @@ INSERT INTO `pracownik` (`id_pracownika`, `imie`, `nazwisko`, `wypłata`, `godzi
 	(47, 'Michal', 'Nowak', 0, 0),
 	(48, 'Bartlomiej', 'Bartolomeo', 0, 0),
 	(49, 'Zenek', 'Bartolomeo', 0, 0),
-	(50, 'Kamil', 'Kowalski', 0, 0);
+	(50, 'Kamil', 'Kowalski', 0, 0),
+	(51, 'Adam', 'Krzanek', 0, 0),
+	(52, 'Tester', 'Toster', 0, 0);
 /*!40000 ALTER TABLE `pracownik` ENABLE KEYS */;
 
 -- Zrzut struktury tabela aplikacja_baza.projekty
