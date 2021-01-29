@@ -1,3 +1,3 @@
-CALL Dodaj_pracownika ("Izabella","Lecka");
-CALL Wygeneruj_login(22,"Lepiej nie mowic"); 
-CALL Wygeneruj_haslo(22,"Kurwa");
+CALL Dodaj_pracownika ("Kamil","Kowalski");
+CALL Wygeneruj_login(50,"Ostatni"); 
+CALL Wygeneruj_haslo(50,"haha");

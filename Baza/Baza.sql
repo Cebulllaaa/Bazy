@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `dostawcy` (
   PRIMARY KEY (`id_dostawcy`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.dostawcy: ~1 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.dostawcy: ~0 rows (około)
 DELETE FROM `dostawcy`;
 /*!40000 ALTER TABLE `dostawcy` DISABLE KEYS */;
 INSERT INTO `dostawcy` (`id_dostawcy`, `nazwa_dostawcy`) VALUES
@@ -148,13 +148,16 @@ CREATE TABLE IF NOT EXISTS `działy` (
   PRIMARY KEY (`id_działu`),
   KEY `zarządca_działu` (`zarządca_działu`),
   CONSTRAINT `FK_działy_pracownik` FOREIGN KEY (`zarządca_działu`) REFERENCES `pracownik` (`id_pracownika`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.działy: ~1 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.działy: ~4 rows (około)
 DELETE FROM `działy`;
 /*!40000 ALTER TABLE `działy` DISABLE KEYS */;
 INSERT INTO `działy` (`id_działu`, `zarządca_działu`, `nazwa_działu`) VALUES
-	(1, 1, 'Projektowania Baz Danych');
+	(1, 1, 'Projektowania Baz Danych'),
+	(2, 6, 'Oprogramowanie graficzne'),
+	(3, 8, 'Oprogramowanie systemowe'),
+	(4, 13, 'Proste aplikacje');
 /*!40000 ALTER TABLE `działy` ENABLE KEYS */;
 
 -- Zrzut struktury tabela aplikacja_baza.grupy_zespołów
@@ -171,12 +174,76 @@ CREATE TABLE IF NOT EXISTS `grupy_zespołów` (
   CONSTRAINT `FK_grupy_zespołów_zespoły` FOREIGN KEY (`zespoł`) REFERENCES `zespoły` (`id_zespołu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.grupy_zespołów: ~2 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.grupy_zespołów: ~11 rows (około)
 DELETE FROM `grupy_zespołów`;
 /*!40000 ALTER TABLE `grupy_zespołów` DISABLE KEYS */;
 INSERT INTO `grupy_zespołów` (`zespoł`, `pracownik`, `status`, `wynagrodzenie`, `godziny`) VALUES
 	(5, 3, 'Zarzadca', 0, 0),
-	(6, 4, 'Byly pracownik', 0, 0);
+	(6, 4, 'Byly pracownik', 0, 0),
+	(7, 14, 'Zarzadca', 0, 0),
+	(8, 15, 'Zarzadca', 0, 0),
+	(9, 16, 'Zarzadca', 0, 0),
+	(10, 18, 'Zarzadca', 0, 0),
+	(11, 18, 'Byly zarzadca', 0, 0),
+	(12, 20, 'Zarzadca', 0, 0),
+	(13, 24, 'Zarzadca', 0, 0),
+	(14, 25, 'Zarzadca', 0, 0),
+	(15, 26, 'Zarzadca', 0, 0),
+	(11, 19, 'Zarzadca', 0, 0),
+	(7, 5, 'Obecny', 0, 0),
+	(7, 7, 'Obecny', 0, 0),
+	(7, 21, 'Obecny', 0, 0),
+	(7, 29, 'Obecny', 0, 0),
+	(7, 35, 'Obecny', 0, 0),
+	(7, 42, 'Obecny', 0, 0),
+	(7, 44, 'Obecny', 0, 0),
+	(8, 9, 'Obecny', 0, 0),
+	(8, 18, 'Obecny', 0, 0),
+	(8, 38, 'Obecny', 0, 0),
+	(8, 27, 'Obecny', 0, 0),
+	(8, 11, 'Obecny', 0, 0),
+	(8, 49, 'Obecny', 0, 0),
+	(9, 50, 'Obecny', 0, 0),
+	(9, 32, 'Obecny', 0, 0),
+	(9, 12, 'Obecny', 0, 0),
+	(9, 17, 'Obecny', 0, 0),
+	(9, 28, 'Obecny', 0, 0),
+	(9, 41, 'Obecny', 0, 0),
+	(10, 44, 'Obecny', 0, 0),
+	(10, 10, 'Obecny', 0, 0),
+	(10, 35, 'Obecny', 0, 0),
+	(10, 38, 'Obecny', 0, 0),
+	(10, 47, 'Obecny', 0, 0),
+	(10, 46, 'Obecny', 0, 0),
+	(11, 37, 'Obecny', 0, 0),
+	(11, 11, 'Obecny', 0, 0),
+	(11, 49, 'Obecny', 0, 0),
+	(11, 17, 'Obecny', 0, 0),
+	(11, 22, 'Obecny', 0, 0),
+	(11, 23, 'Obecny', 0, 0),
+	(12, 12, 'Obecny', 0, 0),
+	(12, 43, 'Obecny', 0, 0),
+	(12, 42, 'Obecny', 0, 0),
+	(12, 41, 'Obecny', 0, 0),
+	(12, 40, 'Obecny', 0, 0),
+	(12, 3, 'Obecny', 0, 0),
+	(12, 2, 'Obecny', 0, 0),
+	(13, 2, 'Obecny', 0, 0),
+	(13, 11, 'Obecny', 0, 0),
+	(13, 27, 'Obecny', 0, 0),
+	(13, 32, 'Obecny', 0, 0),
+	(13, 36, 'Obecny', 0, 0),
+	(13, 49, 'Obecny', 0, 0),
+	(13, 50, 'Obecny', 0, 0),
+	(14, 41, 'Obecny', 0, 0),
+	(14, 30, 'Obecny', 0, 0),
+	(14, 14, 'Obecny', 0, 0),
+	(14, 22, 'Obecny', 0, 0),
+	(15, 18, 'Obecny', 0, 0),
+	(15, 19, 'Obecny', 0, 0),
+	(15, 21, 'Obecny', 0, 0),
+	(15, 23, 'Obecny', 0, 0),
+	(15, 31, 'Obecny', 0, 0);
 /*!40000 ALTER TABLE `grupy_zespołów` ENABLE KEYS */;
 
 -- Zrzut struktury tabela aplikacja_baza.hasla
@@ -186,9 +253,9 @@ CREATE TABLE IF NOT EXISTS `hasla` (
   `hash_hasla` varchar(90) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_pracownika`),
   CONSTRAINT `FK_hasla_pracownik` FOREIGN KEY (`id_pracownika`) REFERENCES `pracownik` (`id_pracownika`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.hasla: ~12 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.hasla: ~49 rows (około)
 DELETE FROM `hasla`;
 /*!40000 ALTER TABLE `hasla` DISABLE KEYS */;
 INSERT INTO `hasla` (`id_pracownika`, `hash_hasla`) VALUES
@@ -203,7 +270,44 @@ INSERT INTO `hasla` (`id_pracownika`, `hash_hasla`) VALUES
 	(10, '8ed61f18a79c12b81f679f75caa36fb5'),
 	(11, '0fe2f9896b9a287b112ec4d326d07f12'),
 	(12, 'c18f09f0e800d5af12e222c3e6fe4da1'),
-	(13, 'd8578edf8458ce06fbc5bb76a58c5ca4');
+	(13, 'd8578edf8458ce06fbc5bb76a58c5ca4'),
+	(14, '9c838d2e45b2ad1094d42f4ef36764f6'),
+	(15, '96b9bff013acedfb1d140579e2fbeb63'),
+	(16, 'a5a61717dddc3501cfdf7a4e22d7dbaa'),
+	(17, '064616b136a57eb88100b283a8a12eb3'),
+	(18, '9c838d2e45b2ad1094d42f4ef36764f6'),
+	(19, '96b9bff013acedfb1d140579e2fbeb63'),
+	(20, 'a5a61717dddc3501cfdf7a4e22d7dbaa'),
+	(21, '3901a36e8896ae15a609d50c0e8fc59a'),
+	(22, '92aaf585738f21f331510facd1156481'),
+	(23, 'a2289681db3b897b364d0260f156c397'),
+	(24, '9c838d2e45b2ad1094d42f4ef36764f6'),
+	(25, '96b9bff013acedfb1d140579e2fbeb63'),
+	(26, 'a5a61717dddc3501cfdf7a4e22d7dbaa'),
+	(27, '35d0608c91cb91f1485e303059ac54a9'),
+	(28, '9cc336686bbdfd88b04b093a320f7834'),
+	(29, '26f9cf6976007eaf47a1b0cd45661000'),
+	(30, 'a6e45af79e07819688118ad9b069242e'),
+	(31, '7f5e6974031a1426c0eb59285a9bb484'),
+	(32, 'd16f72b532568af5766bc9e1d8659fdc'),
+	(33, '5f59ac736640f43e61c6070284bf1c06'),
+	(34, '5c7d75f1887fc86beb4c19a0371c17d7'),
+	(35, '64ef19184ecd8a82f9b42789aa856f6d'),
+	(36, '335728bd3bb8b85c19954193f50018a8'),
+	(37, 'fb2fe71d592fad516f05549409da8e35'),
+	(38, '5a09724274a5602aba637dea7f194d86'),
+	(39, 'b8dabebeff5414b5117f209cd9722d2e'),
+	(40, 'd0b9eace824110f7f8f37509abb97288'),
+	(41, '28aac17f9d47af15b0229e857dafdce1'),
+	(42, 'd9786b687bc5f3fe1d4ae05ff05e0eb5'),
+	(43, '94760ac96df5c43d58af726f11f345a4'),
+	(44, '4ea0ce47e5af7159d714e09e9e7ef0cb'),
+	(45, '4ea0ce47e5af7159d714e09e9e7ef0cb'),
+	(46, 'c90c0da7690d5c10ab457c0968591914'),
+	(47, 'c90c0da7690d5c10ab457c0968591914'),
+	(48, 'c90c0da7690d5c10ab457c0968591914'),
+	(49, 'c90c0da7690d5c10ab457c0968591914'),
+	(50, '4e4d6c332b6fe62a63afe56171fd3725');
 /*!40000 ALTER TABLE `hasla` ENABLE KEYS */;
 
 -- Zrzut struktury tabela aplikacja_baza.klienci
@@ -214,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `klienci` (
   PRIMARY KEY (`id_klienta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.klienci: ~1 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.klienci: ~0 rows (około)
 DELETE FROM `klienci`;
 /*!40000 ALTER TABLE `klienci` DISABLE KEYS */;
 INSERT INTO `klienci` (`id_klienta`, `nazwa_klienta`) VALUES
@@ -285,9 +389,9 @@ CREATE TABLE IF NOT EXISTS `loginy` (
   `login` varchar(90) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_pracownika`),
   CONSTRAINT `FK_loginy_pracownik` FOREIGN KEY (`id_pracownika`) REFERENCES `pracownik` (`id_pracownika`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.loginy: ~12 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.loginy: ~49 rows (około)
 DELETE FROM `loginy`;
 /*!40000 ALTER TABLE `loginy` DISABLE KEYS */;
 INSERT INTO `loginy` (`id_pracownika`, `login`) VALUES
@@ -302,7 +406,44 @@ INSERT INTO `loginy` (`id_pracownika`, `login`) VALUES
 	(10, 'Wrona'),
 	(11, 'Pruk'),
 	(12, 'Gawron'),
-	(13, 'Zeus');
+	(13, 'Zeus'),
+	(14, 'Woda'),
+	(15, 'Ziemia'),
+	(16, 'Ogien'),
+	(17, 'Diabel'),
+	(18, 'Mugol'),
+	(19, 'Rudy'),
+	(20, 'Mag'),
+	(21, 'Renifer'),
+	(22, 'Lepiej nie mowic'),
+	(23, 'Peter'),
+	(24, 'Pioter'),
+	(25, 'Mercedes'),
+	(26, 'Zlodziej'),
+	(27, 'Humbert'),
+	(28, 'Geniusz'),
+	(29, 'Lalka'),
+	(30, 'Zadlo'),
+	(31, 'Osa'),
+	(32, 'Ksiadz Robak'),
+	(33, 'Zlotowka'),
+	(34, 'Pociag'),
+	(35, 'jablko'),
+	(36, 'Nowaczczi'),
+	(37, 'Chojrak'),
+	(38, 'Zolw'),
+	(39, 'Ktos'),
+	(40, 'Znany'),
+	(41, 'Celebryta'),
+	(42, 'Sempik'),
+	(43, 'Sowa'),
+	(44, 'Puchacz'),
+	(45, 'ups'),
+	(46, 'Siatkarka'),
+	(47, 'Ogr'),
+	(48, 'Artysta'),
+	(49, 'Siwy'),
+	(50, 'Ostatni');
 /*!40000 ALTER TABLE `loginy` ENABLE KEYS */;
 
 -- Zrzut struktury widok aplikacja_baza.pracownicy
@@ -325,9 +466,9 @@ CREATE TABLE IF NOT EXISTS `pracownik` (
   `wypłata` int(11) NOT NULL DEFAULT 0,
   `godziny_tygodniowo` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_pracownika`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.pracownik: ~13 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.pracownik: ~50 rows (około)
 DELETE FROM `pracownik`;
 /*!40000 ALTER TABLE `pracownik` DISABLE KEYS */;
 INSERT INTO `pracownik` (`id_pracownika`, `imie`, `nazwisko`, `wypłata`, `godziny_tygodniowo`) VALUES
@@ -343,7 +484,44 @@ INSERT INTO `pracownik` (`id_pracownika`, `imie`, `nazwisko`, `wypłata`, `godzi
 	(10, 'Bogdan', 'Bogdarenko', 0, 0),
 	(11, 'Ireneusz', 'Bogdarenko', 0, 0),
 	(12, 'Gilber', 'Bogdarenko', 0, 0),
-	(13, 'Jacek', 'Jacak', 0, 0);
+	(13, 'Jacek', 'Jacak', 0, 0),
+	(14, 'Omi', 'Xiao', 0, 0),
+	(15, 'Clay', 'Xiao', 0, 0),
+	(16, 'Kimikko', 'Xiao', 0, 0),
+	(17, 'Kazuma', 'Satou', 0, 0),
+	(18, 'Harry', 'Potter', 0, 0),
+	(19, 'Ronald', 'Weasley', 0, 0),
+	(20, 'Hermiona', 'Weasley', 0, 0),
+	(21, 'Rudolf', 'Kowalski', 0, 0),
+	(22, 'Izabella', 'Lecka', 0, 0),
+	(23, 'Piotr', 'Piotrowicz', 0, 0),
+	(24, 'Janusz', 'Nosacz', 0, 0),
+	(25, 'Grazyna', 'Nosacz', 0, 0),
+	(26, 'Somsiad', 'Nosacz', 0, 0),
+	(27, 'Konrad', 'Kowalski', 0, 0),
+	(28, 'Isaac', 'Newton', 0, 0),
+	(29, 'Krystian', 'Kozanowski', 0, 0),
+	(30, 'Ignacy', 'Krystka', 0, 0),
+	(31, 'Ignacy', 'Krystka', 0, 0),
+	(32, 'Janek', 'Krystka', 0, 0),
+	(33, 'Jacek', 'Soplica', 0, 0),
+	(34, 'Kamila', 'Grabie', 0, 0),
+	(35, 'Justyna', 'Jozkow', 0, 0),
+	(36, 'Amelia', 'Jozkow', 0, 0),
+	(37, 'Zygmund', 'Nowak', 0, 0),
+	(38, 'Eustachy', 'Motyka', 0, 0),
+	(39, 'Michal', 'Aniol', 0, 0),
+	(40, 'Waldemar', 'Nowak', 0, 0),
+	(41, 'Zgigniew', 'Owad', 0, 0),
+	(42, 'Kuba', 'Wojewodzki', 0, 0),
+	(43, 'Gregorij', 'Trajajenko', 0, 0),
+	(44, 'Witold', 'Trajajenko', 0, 0),
+	(45, 'Michalina', 'Trajajenko', 0, 0),
+	(46, 'Zuzanna', 'Nowak', 0, 0),
+	(47, 'Michal', 'Nowak', 0, 0),
+	(48, 'Bartlomiej', 'Bartolomeo', 0, 0),
+	(49, 'Zenek', 'Bartolomeo', 0, 0),
+	(50, 'Kamil', 'Kowalski', 0, 0);
 /*!40000 ALTER TABLE `pracownik` ENABLE KEYS */;
 
 -- Zrzut struktury tabela aplikacja_baza.projekty
@@ -599,7 +777,7 @@ CREATE TABLE IF NOT EXISTS `zakupy` (
   CONSTRAINT `FK_zakupy_działy` FOREIGN KEY (`dział`) REFERENCES `działy` (`id_działu`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.zakupy: ~1 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.zakupy: ~0 rows (około)
 DELETE FROM `zakupy`;
 /*!40000 ALTER TABLE `zakupy` DISABLE KEYS */;
 INSERT INTO `zakupy` (`id_zakupu`, `dział`, `dostawca`, `produkt`, `wartosc_zakupu`) VALUES
@@ -781,14 +959,23 @@ CREATE TABLE IF NOT EXISTS `zespoły` (
   KEY `dział` (`dział`),
   CONSTRAINT `FK_zespoły_działy` FOREIGN KEY (`dział`) REFERENCES `działy` (`id_działu`),
   CONSTRAINT `FK_zespoły_pracownik` FOREIGN KEY (`zarządca_zespołu`) REFERENCES `pracownik` (`id_pracownika`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.zespoły: ~2 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.zespoły: ~11 rows (około)
 DELETE FROM `zespoły`;
 /*!40000 ALTER TABLE `zespoły` DISABLE KEYS */;
 INSERT INTO `zespoły` (`id_zespołu`, `zarządca_zespołu`, `nazwa_zespołu`, `dział`, `budżet`, `godziny_tygodniowo`) VALUES
 	(5, 3, 'Zespol A', 1, 0, 0),
-	(6, 4, 'Zespol B', 1, 0, 0);
+	(6, 4, 'Zespol B', 1, 0, 0),
+	(7, 14, 'Zespol 3D A', 2, 0, 0),
+	(8, 15, 'Zespol 3D B', 2, 0, 0),
+	(9, 16, 'Zespol 2D A', 2, 0, 0),
+	(10, 18, 'Zespol  do spraw Linuxa A', 3, 0, 0),
+	(11, 19, 'Zespol  do spraw Linuxa B', 3, 0, 0),
+	(12, 20, 'Zespol  do spraw Windowsa A', 3, 0, 0),
+	(13, 24, 'Zespol  AA', 4, 0, 0),
+	(14, 25, 'Zespol  AB', 4, 0, 0),
+	(15, 26, 'Zespol  AC', 4, 0, 0);
 /*!40000 ALTER TABLE `zespoły` ENABLE KEYS */;
 
 -- Zrzut struktury tabela aplikacja_baza.zlecenia
@@ -805,7 +992,7 @@ CREATE TABLE IF NOT EXISTS `zlecenia` (
   CONSTRAINT `FK_zlecenia_klienci` FOREIGN KEY (`klient`) REFERENCES `klienci` (`id_klienta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.zlecenia: ~1 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.zlecenia: ~0 rows (około)
 DELETE FROM `zlecenia`;
 /*!40000 ALTER TABLE `zlecenia` DISABLE KEYS */;
 INSERT INTO `zlecenia` (`id_zlecenia`, `klient`, `wartosc_zlecenia`, `dzial`) VALUES
@@ -849,7 +1036,11 @@ DELIMITER ;
 -- Zrzut struktury procedura aplikacja_baza.ZM_zarzadcy_zespolu
 DROP PROCEDURE IF EXISTS `ZM_zarzadcy_zespolu`;
 DELIMITER //
-CREATE PROCEDURE `ZM_zarzadcy_zespolu`(IN zesp int, IN cz int, IN dz int)
+CREATE PROCEDURE `ZM_zarzadcy_zespolu`(
+	IN `zesp` int,
+	IN `cz` int,
+	IN `dz` int
+)
 BEGIN
  DECLARE dz_zesp int;
 
@@ -859,6 +1050,7 @@ BEGIN
  BEGIN
   UPDATE grupy_zespołów SET status = 'Byly zarzadca' WHERE zespoł = zesp AND status = 'Zarzadca';
   UPDATE grupy_zespołów SET status = 'Zarzadca' WHERE zespoł = zesp AND pracownik = cz;
+  UPDATE zespoły		 	SET zarządca_zespołu = cz WHERE id_zespołu = zesp;
  END;
  END IF;
 
