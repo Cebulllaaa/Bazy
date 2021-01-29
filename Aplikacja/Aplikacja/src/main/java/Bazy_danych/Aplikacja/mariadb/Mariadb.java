@@ -25,5 +25,5 @@ public abstract class Mariadb {
 	protected ArrayList<Integer> IDs;
 	public abstract UI_Proxy getUI();
 	protected abstract void setUI();
-	
+	public abstract ArrayList<String> use_procedure(Procedures proc, ArrayList<String> args, ArrayList<Acces> acc, ArrayList<Integer> id);
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Bazy_danych.Aplikacja.mariadb.Mariadb;
 import Bazy_danych.Aplikacja.mariadb.MariadbService;
+import Bazy_danych.Aplikacja.mariadb.Procedures;
 
 public class Sign_in_Proxy extends Mariadb{
 	private MariadbService service;
@@ -23,8 +24,8 @@ public class Sign_in_Proxy extends Mariadb{
 		int x = service.sign_in();
 		setAcces();
 		setIDs("");
-		setUI();
 		service.close_connection();
+		setUI();
 		service = null;
 		return x;
 	}
@@ -72,6 +73,12 @@ public class Sign_in_Proxy extends Mariadb{
 	@Override
 	public UI_Proxy getUI() {
 		return proxy;
+	}
+
+	@Override
+	public ArrayList<String> use_procedure(Procedures proc , ArrayList<String> args, ArrayList<Acces> acc, ArrayList<Integer> id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

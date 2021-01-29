@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Bazy_danych.Aplikacja.mariadb.Mariadb;
 import Bazy_danych.Aplikacja.mariadb.MariadbService;
+import Bazy_danych.Aplikacja.mariadb.Procedures;
 
 public class UI_Proxy extends Mariadb{
 	private MariadbService service;
@@ -34,14 +35,13 @@ public class UI_Proxy extends Mariadb{
 
 	@Override
 	public ArrayList<Acces> getAcces() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return acceses;
 	}
 
 	@Override
 	public ArrayList<Integer> getIDs() {
-		// TODO Auto-generated method stub
-		return null;
+		return IDs;
 	}
 
 	@Override
@@ -64,6 +64,16 @@ public class UI_Proxy extends Mariadb{
 	protected void setUI() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public ArrayList<String> use_procedure(Procedures proc, ArrayList<String> args, ArrayList<Acces> acc, ArrayList<Integer> id) {
+		if(acc.equals(acceses)) {
+			return service.use_procedure(proc,args,acc,id);
+		}
+		else {
+			System.out.println("Blad zgodnosci");
+			return null;
+		}
 	}
 
 }

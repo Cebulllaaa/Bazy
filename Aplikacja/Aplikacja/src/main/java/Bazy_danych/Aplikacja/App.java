@@ -3,6 +3,7 @@ package Bazy_danych.Aplikacja;
 import Bazy_danych.Aplikacja.Bezpieczenstwo.Acces;
 import Bazy_danych.Aplikacja.Bezpieczenstwo.Sign_in_Proxy;
 import Bazy_danych.Aplikacja.mariadb.Mariadb;
+import Bazy_danych.Aplikacja.mariadb.Procedures;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -23,6 +24,7 @@ public class App {
 	private ArrayList<Acces> acceses;
 	private ArrayList<Integer> IDs;
 	private static boolean isLogging = false;
+	private ArrayList<String> arg;
 	public static void main(String[] args) {
 		app = new App();
 		LogInDialog lid = new LogInDialog();
@@ -35,8 +37,6 @@ public class App {
 				ix.printStackTrace();
 			}
 		}
-		//login = "admin";
-		//password = DigestUtils.md5Hex("admin");
 		app.sign_in(login, password);
 	}
 	private void sign_in(String x, String y) {
@@ -69,6 +69,13 @@ public class App {
 	}
 	private void UI() {
 		connection = connection.getUI();
+		ArrayList<Integer> u = new ArrayList<Integer>();
+		u.add(0);
+		u.add(15);
+		arg = new ArrayList<String>();
+		arg.add("44");
+		connection.use_procedure(Procedures.DODAJ_DO_ZESPOLU, arg, acceses, u);
+
 	}
 
 	private static class LogInDialog extends JDialog {

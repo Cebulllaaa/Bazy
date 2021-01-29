@@ -8,7 +8,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import Bazy_danych.Aplikacja.Bezpieczenstwo.Acces;
 import Bazy_danych.Aplikacja.Bezpieczenstwo.UI_Proxy;
 public class MariadbService extends Mariadb{
-
+	private Procedures_manager manager;
 	public MariadbService(String x, String y) {
 		this.login =x;
 		this.password=y;
@@ -20,12 +20,21 @@ public class MariadbService extends Mariadb{
 		this.acceses = new ArrayList<Acces>();
 		this.acceses = x;
 		this.IDs = y;
+		String databse_login;
+		String database_password;
+		if(acceses.contains(Acces.ADMIN)) {
+			estabilish_connection("BazyUser","123");
+		}
+		/*
+		 * TODO opcje dla osob z mniejszymi uprawnieniami
+		 */
 	}
 	
 	public void estabilish_connection(String x, String y) {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL,x,y);
+			manager = new Procedures_manager(conn);
 		}
 		catch(Exception e) {
 			System.out.println(e);
@@ -165,6 +174,10 @@ public class MariadbService extends Mariadb{
 	protected void setUI() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public ArrayList<String> use_procedure(Procedures proc, ArrayList<String> args, ArrayList<Acces> acc, ArrayList<Integer> id) {
+			return manager.use_procedure(proc,args,acc,id);
 	}
 
 }
