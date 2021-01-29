@@ -4,7 +4,14 @@ import Bazy_danych.Aplikacja.Bezpieczenstwo.Acces;
 import Bazy_danych.Aplikacja.Bezpieczenstwo.Sign_in_Proxy;
 import Bazy_danych.Aplikacja.mariadb.Mariadb;
 
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JTextField;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -15,14 +22,21 @@ public class App {
 	private static String password;
 	private ArrayList<Acces> acceses;
 	private ArrayList<Integer> IDs;
+	private static boolean isLogging = false;
 	public static void main(String[] args) {
 		app = new App();
-		/*
-		 *TODO Ustalenie kto loguje sie do aplikacji i wywolanie odpowiedniej funkcji
-		 * na podstawie zmiennych login i password
-		 */
-		login = "admin";
-		password = DigestUtils.md5Hex("admin");
+		LogInDialog lid = new LogInDialog();
+		lid.setVisible(true);
+		while (!isLogging) {
+			try {
+				Thread.sleep(200);
+			}
+			catch (InterruptedException ix) {
+				ix.printStackTrace();
+			}
+		}
+		//login = "admin";
+		//password = DigestUtils.md5Hex("admin");
 		app.sign_in(login, password);
 	}
 	private void sign_in(String x, String y) {
@@ -56,4 +70,45 @@ public class App {
 	private void UI() {
 		connection = connection.getUI();
 	}
+
+	private static class LogInDialog extends JDialog {
+
+		private JTextField inLogin;
+		private JTextField inPassword;
+
+		public LogInDialog() {
+			setLayout(new GridLayout(3, 1));
+
+			inLogin = new JTextField("login");
+			inPassword = new JTextField("haslo");
+
+			add(inLogin);
+			add(inPassword);
+
+			JButton button = new JButton("Ok");
+			button.addActionListener(new OkListener());
+			add(button);
+
+			setTitle("Logowanie");
+			setSize(200, 100);
+			setLocationRelativeTo(null);
+
+		}
+
+		private class OkListener implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				login = inLogin.getText();
+				password = DigestUtils.md5Hex(inPassword.getText());
+				isLogging = true;
+
+				setVisible(false);
+
+			}
+
+		}
+
+	}
+
 }

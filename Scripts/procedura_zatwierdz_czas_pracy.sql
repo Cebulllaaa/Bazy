@@ -1,8 +1,8 @@
-DROP PROCEDURE IF EXISTS zatwierdz_wynagrodzenie;
+DROP PROCEDURE IF EXISTS zatwierdz_czas_pracy;
 
 DELIMITER $$
 
-CREATE PROCEDURE zatwierdz_wynagrodzenie (IN zesp int)
+CREATE PROCEDURE zatwierdz_czas_pracy (IN zesp int)
 BEGIN
  DECLARE pozostalo int;
  DECLARE dodawanie int;
@@ -11,19 +11,19 @@ BEGIN
  DECLARE ok boolean DEFAULT TRUE;
  DECLARE juz boolean DEFAULT FALSE;
 
- DECLARE pracownicy CURSOR FOR SELECT pracownik, wynagrodzenie FROM grupy_zespołów
+ DECLARE pracownicy CURSOR FOR SELECT pracownik, godziny FROM grupy_zespołów
   WHERE (status = "Zarzadca" OR status = "Obecny" OR status = "Byly zarzadca") AND zespoł = zesp;
 
  DECLARE CONTINUE HANDLER FOR NOT FOUND SET juz = TRUE;
 
- SELECT zespoły.budżet FROM zespoły WHERE id_zespołu = zesp INTO pozostalo;
+ SELECT zespoły.godziny_tygodniowo FROM zespoły WHERE id_zespołu = zesp INTO pozostalo;
 
  OPEN pracownicy;
  FETCH pracownicy INTO i, dodawanie;
 
  START TRANSACTION;
 
-wyplacanie: WHILE NOT juz DO
+planowanie: WHILE NOT juz DO
  BEGIN
   SET pozostalo = pozostalo - dodawanie;
 
@@ -32,12 +32,12 @@ wyplacanie: WHILE NOT juz DO
 
    ROLLBACK;
    SET ok = FALSE;
-   LEAVE wyplacanie;
+   LEAVE planowanie;
 
   END;
   END IF;
 
-  UPDATE pracownik SET wypłata = wypłata + dodawanie WHERE id_pracownika = i;
+  UPDATE pracownik SET godziny_tygodniowo = godziny_tygodniowo + dodawanie WHERE id_pracownika = i;
 
   FETCH pracownicy INTO i, dodawanie;
  END;
@@ -53,4 +53,4 @@ END$$
 
 DELIMITER ;
 
--- CALL zatwierdz_wynagrodzenie (6); -- dziala
+-- CALL zatwierdz_czas_pracy (6);

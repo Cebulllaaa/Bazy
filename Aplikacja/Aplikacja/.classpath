@@ -1,32 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="target/classes" path="src/main/java">
-		<attributes>
-			<attribute name="optional" value="true"/>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
-		<attributes>
-			<attribute name="optional" value="true"/>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="test" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="src" path="src/test/java" output="target/test-classes" including="**/*.java"/>
+  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
+  <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="var" path="M2_REPO/com/googlecode/soundlibs/basicplayer/3.0.0.0/basicplayer-3.0.0.0.jar" sourcepath="M2_REPO/com/googlecode/soundlibs/basicplayer/3.0.0.0/basicplayer-3.0.0.0-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/googlecode/soundlibs/mp3spi/1.9.5.4/mp3spi-1.9.5.4.jar" sourcepath="M2_REPO/com/googlecode/soundlibs/mp3spi/1.9.5.4/mp3spi-1.9.5.4-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/googlecode/soundlibs/jlayer/1.0.1.4/jlayer-1.0.1.4.jar" sourcepath="M2_REPO/com/googlecode/soundlibs/jlayer/1.0.1.4/jlayer-1.0.1.4-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.2/junit-3.8.2.jar" sourcepath="M2_REPO/junit/junit/3.8.2/junit-3.8.2-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/googlecode/soundlibs/tritonus-share/0.3.7.4/tritonus-share-0.3.7.4.jar" sourcepath="M2_REPO/com/googlecode/soundlibs/tritonus-share/0.3.7.4/tritonus-share-0.3.7.4-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.7.12/slf4j-api-1.7.12.jar" sourcepath="M2_REPO/org/slf4j/slf4j-api/1.7.12/slf4j-api-1.7.12-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/mariadb/jdbc/mariadb-java-client/2.7.1/mariadb-java-client-2.7.1.jar" sourcepath="M2_REPO/org/mariadb/jdbc/mariadb-java-client/2.7.1/mariadb-java-client-2.7.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-codec/commons-codec/1.15/commons-codec-1.15.jar" sourcepath="M2_REPO/commons-codec/commons-codec/1.15/commons-codec-1.15-sources.jar"/>
 </classpath>
