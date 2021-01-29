@@ -10,3 +10,5 @@ CALL Wygeneruj_haslo(5,"321"); */
 /*CALL Utworz_projekt(6,1,"Projekt Janusza");*/
 /*CALL Ustal_budżet_projektu(3,5000,1);*/
 /*CALL Zlecenia_info(1,1);*/
+/*CALL rozwiaz_zespol(6,1);
+CALL zwolnij_pracownika(4);*/
