@@ -69,13 +69,14 @@ public class App {
 	}
 	private void UI() {
 		connection = connection.getUI();
-		ArrayList<Integer> u = new ArrayList<Integer>();
-		u.add(0);
-		u.add(15);
-		arg = new ArrayList<String>();
-		arg.add("44");
-		connection.use_procedure(Procedures.DODAJ_DO_ZESPOLU, arg, acceses, u);
-
+		/* Przykladowe wywolanie procedury dodajacej pracownika
+		 * arg = new ArrayList<String>();
+		arg.add("Adam");
+		arg.add("Krzanek");
+		arg.add("Przyklad2");
+		arg.add("haslo");
+		connection.use_procedure(Procedures.DODAJ_PRACOWNIKA, arg, acceses, IDs);
+		*/
 	}
 
 	private static class LogInDialog extends JDialog {
