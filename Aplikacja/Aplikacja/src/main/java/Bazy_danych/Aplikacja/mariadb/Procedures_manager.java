@@ -187,7 +187,7 @@ public class Procedures_manager {
 		}
 		else if(proc.equals(Procedures.ZAKUP_PRODUKT)) {
 			if(acc.contains(Acces.ZARZADCA_DZIALU)) {
-				zakup_produkt(args);
+				zakup_produkt(args,id);
 			}
 			else {
 				System.out.println("Brak odpowiednich uprawnien");
@@ -259,7 +259,7 @@ public class Procedures_manager {
 		}
 		else if(proc.equals(Procedures.ROZWIAZ_ZESPOL)) {
 			if(acc.contains(Acces.ZARZADCA_DZIALU)) {
-				rozwiaz_zespol(args,id);
+				rozwiaz_zespol(id);
 			}
 			else {
 				System.out.println("Brak odpowiednich uprawnien");
@@ -567,7 +567,7 @@ public class Procedures_manager {
 	private void czlonkowie_zespolu(ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure wyswietlajaca czlonkow zespolu");
 		int id_zesp = x.get(1);
-		String sql = "CALL czlonkowie_zespolu(?)";
+		String sql = "CALL czlonkowe_zespolu(?)";
 		String id_prac;
 		String imie;
 		String nazwisko;
@@ -681,60 +681,279 @@ public class Procedures_manager {
 	}
 	private void dodaj_klienta(ArrayList<String>x) {
 		System.out.println("Uruchamiam procedure dodajaca klienta");
+		String nazwa = x.get(0);
+		String sql = "CALL Dodaj_klienta(?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, nazwa);
+			rs3 = stmt.executeQuery();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		
+		
 	}
 	private void dodaj_zlecenie(ArrayList<String> x, ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure dodajaca zlecenie");
+		int klient = Integer.parseInt(x.get(0));
+		int wart = Integer.parseInt(x.get(1));
+		int dzial = y.get(2);
+		String sql = "CALL Dodaj_zlecenie(?,?,?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, klient);
+			stmt.setInt(2, wart);
+			stmt.setInt(3, dzial);
+			rs3 = stmt.executeQuery();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		
 	}
-	private void zakup_produkt(ArrayList<String> x) {
+	private void zakup_produkt(ArrayList<String> x, ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure zakupujaca nowy produkt");
+		int dzial = y.get(2);
+		int dostawca = Integer.parseInt(x.get(0));
+		String produkt = x.get(1);
+		int wartosc = Integer.parseInt(x.get(2));
+		String sql = "CALL Dodaj_zakup(?,?,?,?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, dzial);
+			stmt.setInt(2, dostawca);
+			stmt.setString(3, produkt);
+			stmt.setInt(4, wartosc);
+			rs3 = stmt.executeQuery();
+			
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
 	}
 	private void utworz_projekt(ArrayList<String> x ,ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure tworzaca nowy projekt");
+		int zespol = y.get(1);
+		int zlecenie = Integer.parseInt(x.get(0));
+		String nazwa = x.get(1);
+		String sql = "CALL Utworz_projekt(?,?,?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, zespol);
+			stmt.setInt(2, zlecenie);
+			stmt.setString(3, nazwa);
+			rs3 = stmt.executeQuery();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
 	}
 	private void ustal_budzet_projektu(ArrayList<String> x, ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure ustalajaca budzet projektu");
+		int projekt = Integer.parseInt(x.get(0));
+		int budzet = Integer.parseInt(x.get(1));
+		int dzial = y.get(2);
+		String sql = "CALL Ustal_budżet_projektu(?,?,?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, projekt);
+			stmt.setInt(2, budzet);
+			stmt.setInt(3, dzial);
+			rs3= stmt.executeQuery();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
 	}
 	private void sprawdz_bilans(ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure wyswietlajaca bilans dzialu");
 	}
 	private void zlecenie_info(ArrayList<String> x, ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure wyswietlajaca informacje o zleceniu");
+		int zlecenie = Integer.parseInt(x.get(0));
+		int dzial = y.get(2);
+		String sql = "CALL Zlecenia_info(?,?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, zlecenie);
+			stmt.setInt(2, dzial);
+			rs3 = stmt.executeQuery();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
 	}
 	private void zmien_status(ArrayList<String> x, ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure zmieniajaca status projektu");
+		int projekt = Integer.parseInt( x.get(0));
+		String status = x.get(1);
+		int dzial = y.get(2);
+		String sql = "CALL zmien_status(?,?,?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, projekt);
+			stmt.setString(2, status);
+			stmt.setInt(3, dzial);
+			rs3 = stmt.executeQuery();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		
 	}
 	private void zatwierdz_budzet(ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure zatwierdzjaca budzet zespolow w dziale");
 	}
 	private void zm_zarzadcy_zespolu(ArrayList<String> x, ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure zmieniajaca zarzadce w dziale");
+		int zespol = y.get(1);
+		int dzial = y.get(2);
+		int zarzadca= Integer.parseInt(x.get(0));
+		String sql = "CALL ZM_zarzadcy_zespolu(?,?,?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, zespol);
+			stmt.setInt(2, zarzadca);
+			stmt.setInt(3, dzial);
+			rs3 = stmt.executeQuery();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		
 	}
 	private void utworz_zespol(ArrayList<String> x, ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure tworzaca nowy zespol");
+		int zarzadca = Integer.parseInt(x.get(0));
+		String nazwa = x.get(1);
+		int dzial = y.get(2);
+		String sql = "CALL Utworz_zespol(?,?,?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, zarzadca);
+			stmt.setString(2, nazwa);
+			stmt.setInt(3, dzial);
+			rs3 = stmt.executeQuery();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
 	}
-	private void rozwiaz_zespol(ArrayList<String> x, ArrayList<Integer> y) {
+	private void rozwiaz_zespol(ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure rozwiazujaca zespol");
+		int zespol = y.get(1);
+		int dzial = y.get(2);
+		String sql = "CALL rozwiaz_zespol(?,?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, zespol);
+			stmt.setInt(2, dzial);
+			rs3 = stmt.executeQuery();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
 	}
 	private void korekta_danych(ArrayList<String> x, ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure poprawiajaca dane pracownika");
+		int prac = y.get(0);
+		String atrybut = x.get(0);
+		String nowy = x.get(1);
+		String sql = "CALL korekta_danych(?,?,?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, prac);
+			stmt.setString(2, atrybut);
+			stmt.setString(3, nowy);
+			rs3 = stmt.executeQuery();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		
 	}
 	private void korekta_historii(ArrayList<String> x, ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure poprawiajaca historie pracownika");
+		int prac = y.get(0);
+		int zesp = y.get(1);
+		String art = x.get(0);
+		String nowy = x.get(1);
+		String sql = "CALL korekta_historii(?,?,?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1,prac);
+			stmt.setInt(2, zesp);
+			stmt.setString(3, art);
+			stmt.setString(4, nowy);
+			rs3 = stmt.executeQuery();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
 	}
 	private void dodaj_dzial(ArrayList<String> x, ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure dodajaca nowy dzial");
+		int zarzadca = y.get(0);
+		String nazwa = x.get(0);
+		String sql = "CALL Dodaj_dzial(?,?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, zarzadca);
+			stmt.setString(2, nazwa);
+			rs3 = stmt.executeQuery();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
 	}
 	private void zwolnij_pracownika(ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure zwalniajaca pracownika");
+		int pracownik = x.get(0);
+		String sql = "CALL zwolnij_pracownika(?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, pracownik);
+			rs3 = stmt.executeQuery();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
 	}
 	private void zm_zarzadcy_dzialu(ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure zmieniajaca zarzadce dzialu");
+		int pracownik = x.get(0);
+		int dzial = x.get(2);
+		String sql = "CALL ZM_zarzadcy_dzialu(?,?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, dzial);
+			stmt.setInt(2, pracownik);
+			rs3 = stmt.executeQuery();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
 	}
 	private void przeniesienie_zlecenia(ArrayList<String> x, ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure przenoszaca zlecenie do innego dzialu");
+		int zlecenie =Integer.parseInt( x.get(0));
+		int dzial = y.get(2);
+		String sql = "CALL przeniesienie_zlecenia(?,?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, zlecenie);
+			stmt.setInt(2, dzial);
+			rs3 = stmt.executeQuery();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		
 	}
 	private void zamknij_dzial(ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure zamykajaca dzial");
+		
 	}
 	private void wczyt_backup() {
 		System.out.println("Wczytuje backup bazy danych");
