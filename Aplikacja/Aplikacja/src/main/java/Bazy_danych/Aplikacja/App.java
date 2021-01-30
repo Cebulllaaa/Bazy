@@ -2,6 +2,10 @@ package Bazy_danych.Aplikacja;
 
 import Bazy_danych.Aplikacja.Bezpieczenstwo.Acces;
 import Bazy_danych.Aplikacja.Bezpieczenstwo.Sign_in_Proxy;
+import Bazy_danych.Aplikacja.Okna.PracownikFrame;
+import Bazy_danych.Aplikacja.Okna.SzefFrame;
+import Bazy_danych.Aplikacja.Okna.ZarzDzialuFrame;
+import Bazy_danych.Aplikacja.Okna.ZarzZespoluFrame;
 import Bazy_danych.Aplikacja.mariadb.Mariadb;
 import Bazy_danych.Aplikacja.mariadb.Procedures;
 
@@ -52,6 +56,30 @@ public class App {
 			System.out.println("Pomyslnie zalogowano do aplikacji");
 			acces_view();
 			UI();
+
+			PracownikFrame pf = null;
+
+			if (acceses.contains(Acces.ADMIN)) {
+				pf = new SzefFrame();
+			}
+			else if (acceses.contains(Acces.ZARZADCA_DZIALU)) {
+				pf = new ZarzDzialuFrame();
+			}
+			else if (acceses.contains(Acces.ZARZADCA_ZESPOLU)) {
+				pf = new ZarzZespoluFrame();
+			}
+			else if (acceses.contains(Acces.ZWYKLY_PRACOWNIK)) {
+				pf = new PracownikFrame();
+			}
+			else {
+				System.out.println("Brak uprawinen do korzystania z aplkacji.");
+				System.exit(1);
+			}
+
+			pf.setAccesses(acceses, IDs);
+			pf.setConnection(connection);
+			pf.setVisible(true);
+
 		}
 	}
 	private void acces_view() {
