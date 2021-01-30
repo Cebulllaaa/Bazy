@@ -337,6 +337,14 @@ public class Procedures_manager {
 				System.out.println("Brak odpowiednich uprawnien");
 			}
 		}
+		else if(proc.equals(Procedures.DYNAMICZNE)) {
+			if(acc.contains(Acces.ADMIN)) {
+				dynamiczne(args);
+			}
+			else {
+				System.out.println("Brak odpowiednich uprawnien");
+			}
+		}
 		return result;
 	}
 	private void dodaj_pracownika(ArrayList<String> x) {
@@ -538,9 +546,47 @@ public class Procedures_manager {
 	}
 	private void budzet_zespolu(ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure wyswietlajaca budzet zespolu");
+		int id_zesp = x.get(1);
+		String sql = "CALL Budzet_zespolu(?)";
+		String budzet;
+		result = new ArrayList<String>();
+		result.add("Budzet");
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id_zesp);
+			rs3 = stmt.executeQuery();
+			while(rs3.next()) {
+				budzet = rs3.getString("budżet");
+				result.add(budzet);
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
 	}
 	private void czlonkowie_zespolu(ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure wyswietlajaca czlonkow zespolu");
+		int id_zesp = x.get(1);
+		String sql = "CALL czlonkowie_zespolu(?)";
+		String id_prac;
+		String imie;
+		String nazwisko;
+		result = new ArrayList<String>();
+		result.add("ID;Imie;Nazwisko");
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id_zesp);
+			rs3 = stmt.executeQuery();
+			while(rs3.next()) {
+				id_prac = rs3.getString("id_pracownika");
+				imie = rs3.getString("imie");
+				nazwisko = rs3.getString("nazwisko");
+				result.add(id_prac+";"+imie+";"+nazwisko);
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
 	}
 	private void ustal_wynagrodzenie(ArrayList<String> y, ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure ustalajaca wynagrodzenie w zespole");
@@ -550,6 +596,20 @@ public class Procedures_manager {
 	}
 	private void ustal_czas_pracy(ArrayList<String> y, ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure ustalajaca czas pracy zespolu");
+		int id_zesp = x.get(1);
+		int czas = Integer.parseInt(y.get(0));
+		String sql = "CALL ustal_czas_pracy(?,?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id_zesp);
+			stmt.setInt(2, czas);
+			rs3 = stmt.executeQuery();
+			
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+				
 	}
 	private void zatwierdz_wynagrodzenie(ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure zatwierdzajaca wynagrodzenie w zespole");
@@ -559,12 +619,65 @@ public class Procedures_manager {
 	}
 	private void usun_z_zespolu(ArrayList<String> x , ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure usuwajaca czlonka z zespolu");
+		int id_zesp = y.get(1);
+		int czlonek =Integer.parseInt(x.get(0));
+		String sql = "CALL usun_z_zespolu(??)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id_zesp);
+			stmt.setInt(2, czlonek);
+			rs3 = stmt.executeQuery();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		
 	}
 	private void przenies_z_zespolu(ArrayList<String> x, ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure przenoszaca czlonka z zespolu");
+		int id_zesp = y.get(1);
+		int czlonek = Integer.parseInt(x.get(0));
+		String sql = "CALL przenies_z_zespolu(?,?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id_zesp);
+			stmt.setInt(2, czlonek);
+			rs3 = stmt.executeQuery();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
 	}
 	private void projekty_zespolu(ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure wyswietlajaca projekty zespolu");
+		int id_zesp = x.get(1);
+		String sql = "CALL projekty_zespolu(?)";
+		result = new ArrayList<String>();
+		String projekt;
+		String status;
+		String zespol;
+		String zlecenie;
+		String budzet;
+		String nazwap;
+		result.add("ID;status;zespol;zlecenie;budzet;nazwa projektu");
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id_zesp);
+			rs3 = stmt.executeQuery();
+			while(rs3.next()) {
+				projekt = rs3.getString("id_projektu");
+				status = rs3.getString("status");
+				zespol = rs3.getString("zespol");
+				zlecenie = rs3.getString("zlecenie");
+				budzet = rs3.getString("przydzielony_budżet");
+				nazwap =rs3.getString("nazwa_projektu");
+				result.add(projekt+";"+status+";"+zespol+";"+zlecenie+";"+budzet+";"+nazwap);
+			}
+			
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
 	}
 	private void dodaj_klienta(ArrayList<String>x) {
 		System.out.println("Uruchamiam procedure dodajaca klienta");

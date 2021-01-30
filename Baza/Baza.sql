@@ -17,6 +17,17 @@ DROP DATABASE IF EXISTS `aplikacja_baza`;
 CREATE DATABASE IF NOT EXISTS `aplikacja_baza` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `aplikacja_baza`;
 
+-- Zrzut struktury procedura aplikacja_baza.Budzet_zespolu
+DROP PROCEDURE IF EXISTS `Budzet_zespolu`;
+DELIMITER //
+CREATE PROCEDURE `Budzet_zespolu`(
+	IN `zesp` INT
+)
+BEGIN
+SELECT zespoły.`budżet` FROM zespoły WHERE zespoły.`id_zespołu` = zesp;
+END//
+DELIMITER ;
+
 -- Zrzut struktury procedura aplikacja_baza.czlonkowe_zespolu
 DROP PROCEDURE IF EXISTS `czlonkowe_zespolu`;
 DELIMITER //
@@ -26,6 +37,17 @@ BEGIN
   FROM (SELECT * FROM zespoły WHERE id_zespołu = zesp) AS Z JOIN grupy_zespołów ON Z.id_zespołu = grupy_zespołów.zespoł
    AND (grupy_zespołów.status = "Zarzadca" OR grupy_zespołów.status = "Obecny")
    JOIN pracownik ON grupy_zespołów.pracownik = pracownik.id_pracownika;
+END//
+DELIMITER ;
+
+-- Zrzut struktury procedura aplikacja_baza.Dane_pracownika
+DROP PROCEDURE IF EXISTS `Dane_pracownika`;
+DELIMITER //
+CREATE PROCEDURE `Dane_pracownika`(
+	IN `prac` INT
+)
+BEGIN
+SELECT imie , nazwisko FROM pracownik WHERE pracownik.id_pracownika = prac;
 END//
 DELIMITER ;
 
@@ -174,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `grupy_zespołów` (
   CONSTRAINT `FK_grupy_zespołów_zespoły` FOREIGN KEY (`zespoł`) REFERENCES `zespoły` (`id_zespołu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.grupy_zespołów: ~59 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.grupy_zespołów: ~60 rows (około)
 DELETE FROM `grupy_zespołów`;
 /*!40000 ALTER TABLE `grupy_zespołów` DISABLE KEYS */;
 INSERT INTO `grupy_zespołów` (`zespoł`, `pracownik`, `status`, `wynagrodzenie`, `godziny`) VALUES
@@ -256,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `hasla` (
   CONSTRAINT `FK_hasla_pracownik` FOREIGN KEY (`id_pracownika`) REFERENCES `pracownik` (`id_pracownika`)
 ) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.hasla: ~45 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.hasla: ~47 rows (około)
 DELETE FROM `hasla`;
 /*!40000 ALTER TABLE `hasla` DISABLE KEYS */;
 INSERT INTO `hasla` (`id_pracownika`, `hash_hasla`) VALUES
@@ -313,19 +335,33 @@ INSERT INTO `hasla` (`id_pracownika`, `hash_hasla`) VALUES
 	(52, '207023ccb44feb4d7dadca005ce29a64');
 /*!40000 ALTER TABLE `hasla` ENABLE KEYS */;
 
+-- Zrzut struktury procedura aplikacja_baza.historia_pracownika
+DROP PROCEDURE IF EXISTS `historia_pracownika`;
+DELIMITER //
+CREATE PROCEDURE `historia_pracownika`(
+	IN `prac` INT
+)
+BEGIN
+SELECT zespoły.`nazwa_zespołu`, grupy_zespołów.`status` , projekty.nazwa_projektu, projekty.`status` AS status_projektu
+FROM grupy_zespołów INNER JOIN zespoły ON grupy_zespołów.`zespoł` = zespoły.`id_zespołu` INNER JOIN projekty ON
+projekty.zespol = zespoły.`id_zespołu` WHERE grupy_zespołów.pracownik = prac;
+END//
+DELIMITER ;
+
 -- Zrzut struktury tabela aplikacja_baza.klienci
 DROP TABLE IF EXISTS `klienci`;
 CREATE TABLE IF NOT EXISTS `klienci` (
   `id_klienta` int(11) NOT NULL AUTO_INCREMENT,
   `nazwa_klienta` varchar(90) NOT NULL DEFAULT '',
   PRIMARY KEY (`id_klienta`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- Zrzucanie danych dla tabeli aplikacja_baza.klienci: ~0 rows (około)
 DELETE FROM `klienci`;
 /*!40000 ALTER TABLE `klienci` DISABLE KEYS */;
 INSERT INTO `klienci` (`id_klienta`, `nazwa_klienta`) VALUES
-	(1, 'Pierwszy klient');
+	(1, 'Pierwszy klient'),
+	(2, 'Firma programistyczna A');
 /*!40000 ALTER TABLE `klienci` ENABLE KEYS */;
 
 -- Zrzut struktury procedura aplikacja_baza.korekta_danych
@@ -394,7 +430,7 @@ CREATE TABLE IF NOT EXISTS `loginy` (
   CONSTRAINT `FK_loginy_pracownik` FOREIGN KEY (`id_pracownika`) REFERENCES `pracownik` (`id_pracownika`)
 ) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.loginy: ~45 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.loginy: ~47 rows (około)
 DELETE FROM `loginy`;
 /*!40000 ALTER TABLE `loginy` DISABLE KEYS */;
 INSERT INTO `loginy` (`id_pracownika`, `login`) VALUES
@@ -473,7 +509,7 @@ CREATE TABLE IF NOT EXISTS `pracownik` (
   PRIMARY KEY (`id_pracownika`)
 ) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli aplikacja_baza.pracownik: ~45 rows (około)
+-- Zrzucanie danych dla tabeli aplikacja_baza.pracownik: ~47 rows (około)
 DELETE FROM `pracownik`;
 /*!40000 ALTER TABLE `pracownik` DISABLE KEYS */;
 INSERT INTO `pracownik` (`id_pracownika`, `imie`, `nazwisko`, `wypłata`, `godziny_tygodniowo`) VALUES
@@ -545,14 +581,15 @@ CREATE TABLE IF NOT EXISTS `projekty` (
   KEY `zlecenie` (`zlecenie`),
   CONSTRAINT `FK_projekty_zespoły` FOREIGN KEY (`zespol`) REFERENCES `zespoły` (`id_zespołu`),
   CONSTRAINT `FK_projekty_zlecenia` FOREIGN KEY (`zlecenie`) REFERENCES `zlecenia` (`id_zlecenia`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- Zrzucanie danych dla tabeli aplikacja_baza.projekty: ~2 rows (około)
 DELETE FROM `projekty`;
 /*!40000 ALTER TABLE `projekty` DISABLE KEYS */;
 INSERT INTO `projekty` (`id_projektu`, `status`, `zespol`, `zlecenie`, `przydzielony_budżet`, `nazwa_projektu`) VALUES
 	(2, 'Realizowany', 5, 1, 10000, 'Pierwszy projekt'),
-	(3, 'Porzucony', 6, 1, 5000, 'Projekt Janusza');
+	(3, 'Porzucony', 6, 1, 5000, 'Projekt Janusza'),
+	(4, 'Realizowany', 14, 2, 20000, 'Stworzenie prostej gry');
 /*!40000 ALTER TABLE `projekty` ENABLE KEYS */;
 
 -- Zrzut struktury procedura aplikacja_baza.projekty_pracownika
@@ -981,7 +1018,7 @@ INSERT INTO `zespoły` (`id_zespołu`, `zarządca_zespołu`, `nazwa_zespołu`, `
 	(11, 19, 'Zespol  do spraw Linuxa B', 3, 0, 0),
 	(12, 20, 'Zespol  do spraw Windowsa A', 3, 0, 0),
 	(13, 24, 'Zespol  AA', 4, 0, 0),
-	(14, 25, 'Zespol  AB', 4, 0, 0),
+	(14, 25, 'Zespol  AB', 4, 0, 42),
 	(15, 26, 'Zespol  AC', 4, 0, 0);
 /*!40000 ALTER TABLE `zespoły` ENABLE KEYS */;
 
@@ -997,13 +1034,14 @@ CREATE TABLE IF NOT EXISTS `zlecenia` (
   KEY `dzial` (`dzial`),
   CONSTRAINT `FK_zlecenia_działy` FOREIGN KEY (`dzial`) REFERENCES `działy` (`id_działu`),
   CONSTRAINT `FK_zlecenia_klienci` FOREIGN KEY (`klient`) REFERENCES `klienci` (`id_klienta`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- Zrzucanie danych dla tabeli aplikacja_baza.zlecenia: ~0 rows (około)
 DELETE FROM `zlecenia`;
 /*!40000 ALTER TABLE `zlecenia` DISABLE KEYS */;
 INSERT INTO `zlecenia` (`id_zlecenia`, `klient`, `wartosc_zlecenia`, `dzial`) VALUES
-	(1, 1, 20000, 1);
+	(1, 1, 20000, 1),
+	(2, 2, 50000, 4);
 /*!40000 ALTER TABLE `zlecenia` ENABLE KEYS */;
 
 -- Zrzut struktury procedura aplikacja_baza.Zlecenia_info

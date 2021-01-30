@@ -28,6 +28,9 @@ public class MariadbService extends Mariadb{
 		/*
 		 * TODO opcje dla osob z mniejszymi uprawnieniami
 		 */
+		else if(acceses.contains(Acces.ZARZADCA_ZESPOLU)) {
+			estabilish_connection("ZespolUser","123");
+		}
 		else if(acceses.contains(Acces.ZWYKLY_PRACOWNIK)) {
 			estabilish_connection("PracownikUser","123");
 		}
