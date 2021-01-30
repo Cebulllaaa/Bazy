@@ -60,7 +60,7 @@ BEGIN
    JOIN (SELECT SUM(wartosc_zlecenia) AS bilans_zlecen FROM zlecenia WHERE dzial = dz) AS A
    JOIN (SELECT SUM(budżet) AS bilans_zespolow FROM zespoły WHERE dział = dz) AS B
   WHERE dzial = dz AND dział = dz;
-END
+END$$
 
 DELIMITER ;
 
@@ -153,7 +153,7 @@ BEGIN
 
 END$$
 
-DELIMITER $$
+DELIMITER ;
 
 DROP PROCEDURE IF EXISTS ZM_zarzadcy_zespolu;
 

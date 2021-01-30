@@ -89,7 +89,7 @@ CREATE PROCEDURE dane_pracownika (IN prac int)
 BEGIN
  SELECT imie, nazwisko, wypłata, godziny_tygodniowo FROM pracownik WHERE id_pracownika = prac;
 -- nie wyswietla id, dla bezpieczenstwa
-END
+END$$
 
 DELIMITER ;
 
@@ -102,7 +102,7 @@ BEGIN
  SELECT DISTINCT zespoły.id_zespołu, zespoły.nazwa_zespołu, projekty.id_projektu, projekty.nazwa_projektu
   FROM (SELECT * FROM pracownik WHERE id_pracownika = prac) AS P JOIN grupy_zespołów ON P.id_pracownika = grupy_zespołów.pracownik
    JOIN zespoły ON zespoły.id_zespołu = grupy_zespołów.zespoł JOIN projekty ON projekty.zespol = zespoły.id_zespołu;
-END
+END$$
 
 DELIMITER ;
 
@@ -115,7 +115,7 @@ RETURNS int
 DETERMINISTIC
 BEGIN
  RETURN (SELECT budżet FROM zespoły WHERE id_zespołu = zesp);
-END
+END$$
 
 DELIMITER ;
 
@@ -140,7 +140,7 @@ DELIMITER $$
 CREATE PROCEDURE ustal_wynagrodzenie (IN zesp int, IN cz int, IN wyn int)
 BEGIN
  UPDATE grupy_zespołów SET wynagrodzenie = wyn WHERE zespoł = zesp AND (status = "Obecny" OR status = "Zarzadca") AND pracownik = cz;
-END
+END$$
 
 DELIMITER ;
 
@@ -151,7 +151,7 @@ DELIMITER $$
 CREATE PROCEDURE ustal_czas_pracy_czlonka (IN zesp int, IN czas int, IN prac int)
 BEGIN
  UPDATE grupy_zespołów SET godziny = czas WHERE zespoł = zesp AND (status = "Obecny" OR status = "Zarzadca") AND pracownik = prac;
-END
+END$$
 
 DELIMITER ;
 

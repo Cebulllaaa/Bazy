@@ -2,13 +2,45 @@ package Bazy_danych.Aplikacja.Okna;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 
 import Bazy_danych.Aplikacja.mariadb.Procedures;
 
 public class SzefFrame extends ZarzDzialuFrame {
+
+	protected JMenuBar menuBar;
+	protected JMenu opcjeMenu;
+
+	@Override
+	protected void ustawMenuBar() {
+		menuBar = new JMenuBar();
+		opcjeMenu = new JMenu("Opcje");
+
+		BackupRestore br = new BackupRestore();
+
+		JMenuItem backup = new JMenuItem("Backup");
+		backup.addActionListener(br);
+
+		JMenuItem restore = new JMenuItem("Restore");
+		restore.addActionListener(br);
+
+		opcjeMenu.add(backup);
+		opcjeMenu.add(restore);
+
+		menuBar.add(opcjeMenu);
+
+		setJMenuBar(menuBar);
+
+	}
 
 	@Override
 	protected void utworzPolecenia() {
@@ -265,6 +297,137 @@ public class SzefFrame extends ZarzDzialuFrame {
 				connection.use_procedure(Procedures.ZAMKNIJ_DZIAL, null, accesses, effectiveIDs);
 				wykonano = true;
 				return;
+			}
+
+		}
+
+	}
+
+	private class BackupRestore implements ActionListener {
+		private String sciezka_do_bazy = "sciezka.sql";
+		private PathDialog pd = new PathDialog();
+		private InfoDialog id = new InfoDialog();
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			String akcja = arg0.getActionCommand();
+
+			Runtime runtime = Runtime.getRuntime();
+
+			if (akcja.contentEquals("Backup")) {
+				try {
+					pd.setVisible(true);
+					Process proc = runtime.exec("mysqldump -B aplikacja_baza -R --add-drop-database -u BazyUser -p123 -r " + sciezka_do_bazy);
+System.out.println("Backupuje");
+					int wynik = proc.waitFor();
+System.out.println("Backup zrobiony");
+
+					if (wynik == 0) {
+						id.setText("Utworzono backup");
+					}
+					else {
+						id.setText("Blad: nie udalo sie utworzyc backupu");
+					}
+
+					id.setVisible(true);
+
+				}
+				catch (IOException iox) {
+					iox.printStackTrace();
+				} catch (InterruptedException ix) {
+					ix.printStackTrace();
+				}
+
+				return;
+
+			}
+			
+			if (akcja.contentEquals("Restore")) {
+				try {
+					pd.setVisible(true);
+					Process proc = runtime.exec(new String[]{"mysql", "-uBazyUser", "-p123", "-e", "source " + sciezka_do_bazy});
+System.out.println("Odtwarzam"); //+"mariadb -u BazyUser -p123 -e \"source " + sciezka_do_bazy + "\"");
+					int wynik = proc.waitFor();
+System.out.println("Odtworzylem");
+
+					if (wynik == 0) {
+						id.setText("Odtworzono backup");
+					}
+					else {
+						id.setText("Blad: nie udalo sie odtworzyc backupu");
+					}
+
+					id.setVisible(true);
+
+				}
+				catch (IOException iox) {
+					iox.printStackTrace();
+				} catch (InterruptedException ix) {
+					ix.printStackTrace();
+				}
+
+				return;
+			}
+
+		}
+
+		private class PathDialog extends JDialog {
+			private JTextField pathField = new JTextField(sciezka_do_bazy);
+
+			public PathDialog() {
+				setTitle("Podaj sciezke");
+				setSize(300, 100);
+				setModal(true);
+				setLayout(new GridLayout(3, 1));
+				setLocationRelativeTo(null);
+
+				JTextField infoField = new JTextField("Podaj sciezke do pliku z baza");
+				infoField.setEditable(false);
+
+				JButton but = new JButton("Zatwierdz");
+				but.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						sciezka_do_bazy = pathField.getText();
+						setVisible(false);
+					}
+				});
+
+				add(infoField);
+				add(pathField);
+				add(but);
+
+			}
+
+		}
+
+		private class InfoDialog extends JDialog {
+
+			private JTextField info = new JTextField();
+
+			public InfoDialog() {
+				setTitle("Wynik");
+				setSize(400, 100);
+				setModal(true);
+				setLayout(new GridLayout(2, 1));
+				setLocationRelativeTo(null);
+
+				info.setEditable(false);
+				add(info);
+
+				JButton but = new JButton("Ok");
+				but.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						setVisible(false);
+					}
+				});
+				add(but);
+
+			}
+
+			public void setText(String tekst) {
+				info.setText(tekst);
 			}
 
 		}

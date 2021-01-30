@@ -34,6 +34,7 @@ public class PracownikFrame extends JFrame {
 		idd = new IDDialog();
 		ad = new AlarmDialog();
 
+		ustawMenuBar();
 		utworzPolecenia();
 
 		for (String pol : polecenia) {
@@ -48,6 +49,10 @@ public class PracownikFrame extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+	}
+
+	protected void ustawMenuBar() {
+		;
 	}
 
 	protected void utworzPolecenia() {
