@@ -12,6 +12,7 @@ BEGIN
  BEGIN
   UPDATE grupy_zespołów SET status = 'Byly zarzadca' WHERE zespoł = zesp AND status = 'Zarzadca';
   UPDATE grupy_zespołów SET status = 'Zarzadca' WHERE zespoł = zesp AND pracownik = cz;
+  UPDATE zespoły SET zarządca_zespołu = cz WHERE id_zespołu = zesp;
  END;
  END IF;
 

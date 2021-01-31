@@ -269,14 +269,85 @@ public class ZarzDzialuFrame extends ZarzZespoluFrame {
 				args.add(data0.getText());
 
 				ArrayList<String> wynik = connection.use_procedure(Procedures.ZLECENIE_INFO, args, accesses, effectiveIDs);
-				// TODO
+System.out.println(wynik);
+				ResultFrame rf = new ResultFrame(wynik);
+				rf.setTitle(akcja);
+				rf.setVisible(true);
 				wykonano = true;
 				return;
 			}
 
 			if (akcja.contentEquals("sprawdz bilans")) {
 				ArrayList<String> wynik = connection.use_procedure(Procedures.SPRAWDZ_BILANS, null, accesses, effectiveIDs);
-				// TODO
+System.out.println(wynik);
+
+				ArrayList<String> w1, w2, w3, w4;
+				int i=0;
+
+				w1 = new ArrayList<>();
+				while (i < wynik.size()) {
+					if (wynik.get(i) == null) {
+						i++;
+						break;
+					}
+
+					w1.add(wynik.get(i));
+					i++;
+				}
+System.out.println(w1);
+
+				w2 = new ArrayList<>();
+				while (i < wynik.size()) {
+					if (wynik.get(i) == null) {
+						i++;
+						break;
+					}
+
+					w2.add(wynik.get(i));
+					i++;
+				}
+System.out.println(w2);
+
+				w3 = new ArrayList<>();
+				while (i < wynik.size()) {
+					if (wynik.get(i) == null) {
+						i++;
+						break;
+					}
+
+					w3.add(wynik.get(i));
+					i++;
+				}
+System.out.println(w3);
+
+				w4 = new ArrayList<>();
+				while (i < wynik.size()) {
+					if (wynik.get(i) == null) {
+						i++;
+						break;
+					}
+
+					w4.add(wynik.get(i));
+					i++;
+				}
+System.out.println(w4);
+
+				ResultFrame rf1 = new ResultFrame(w1);
+				rf1.setTitle(akcja + " zlecenia");
+				rf1.setVisible(true);
+
+				ResultFrame rf2 = new ResultFrame(w2);
+				rf2.setTitle(akcja + " zespoly");
+				rf2.setVisible(true);
+
+				ResultFrame rf3 = new ResultFrame(w3);
+				rf3.setTitle(akcja + " projekty");
+				rf3.setVisible(true);
+
+				ResultFrame rf4 = new ResultFrame(w4);
+				rf4.setTitle(akcja + " budzety");
+				rf4.setVisible(true);
+
 				wykonano = true;
 				return;
 			}

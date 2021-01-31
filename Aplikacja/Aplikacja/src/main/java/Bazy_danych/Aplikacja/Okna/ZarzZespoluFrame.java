@@ -67,14 +67,20 @@ public class ZarzZespoluFrame extends PracownikFrame {
 
 			if (akcja.contentEquals("budzet zespolu")) {
 				ArrayList<String> wynik = connection.use_procedure(Procedures.BUDZET_ZESPOLU, null, accesses, effectiveIDs);
-				// TODO
+System.out.println(wynik);
+				ResultFrame rf = new ResultFrame(wynik);
+				rf.setTitle(akcja);
+				rf.setVisible(true);
 				wykonano = true;
 				return;
 			}
 
 			if (akcja.contentEquals("czlonkowie zespolu")) {
 				ArrayList<String> wynik = connection.use_procedure(Procedures.CZLONKOWIE_ZESPOLU, null, accesses, effectiveIDs);
-				// TODO
+System.out.println(wynik);
+				ResultFrame rf = new ResultFrame(wynik);
+				rf.setTitle(akcja);
+				rf.setVisible(true);
 				wykonano = true;
 				return;
 			}
@@ -237,7 +243,10 @@ public class ZarzZespoluFrame extends PracownikFrame {
 
 			if (akcja.contentEquals("projekty zespolu")) {
 				ArrayList<String> wynik = connection.use_procedure(Procedures.PROJEKTY_ZESPOLU, null, accesses, effectiveIDs);
-				// TODO
+System.out.println(wynik);
+				ResultFrame rf = new ResultFrame(wynik);
+				rf.setTitle(akcja);
+				rf.setVisible(true);
 				wykonano = true;
 				return;
 			}

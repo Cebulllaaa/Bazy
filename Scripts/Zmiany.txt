@@ -1,3 +1,3 @@
 - rozbicie procedury liczba_godzin_pracownika na: liczba_godzin_prac_lacznie i liczba_godzin_prac_w_zespolach
 - rozbicie procedury wynagrodzenie_pracownika na: wynagrodzenie_prac_lacznie i wynagrodzenie_prac_w_zespolach
-
+- rozbicie procedury sprawdz_bilans na kilka osobnych

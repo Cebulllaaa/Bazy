@@ -3,8 +3,10 @@ package Bazy_danych.Aplikacja.mariadb;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import Bazy_danych.Aplikacja.Bezpieczenstwo.Acces;
 
@@ -315,7 +317,7 @@ public class Procedures_manager {
 		}
 		else if(proc.equals(Procedures.ZAMKNIJ_DZIAL)) {
 			if(acc.contains(Acces.ADMIN)) {
-				zamknij_dzial(id);
+				zamknij_dzial(args, id);
 			}
 			else {
 				System.out.println("Brak odpowiednich uprawnien");
@@ -534,9 +536,9 @@ public class Procedures_manager {
 			rs3 = stmt.executeQuery();
 			while(rs3.next()) {
 				zespol = rs3.getString("nazwa_zespołu");
-				status = rs3.getString("status");
+				status = rs3.getString("grupy_zespołów.status");
 				projekt = rs3.getString("nazwa_projektu");
-				statusp = rs3.getString("status_projektu");
+				statusp = rs3.getString("projekty.status");
 				result.add(zespol+";"+status+";"+projekt+";"+statusp);
 			}
 		}
@@ -590,9 +592,43 @@ public class Procedures_manager {
 	}
 	private void ustal_wynagrodzenie(ArrayList<String> y, ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure ustalajaca wynagrodzenie w zespole");
+		int zespol, wynagrodzenie, pracownik;
+		zespol = x.get(1);
+		pracownik = Integer.parseInt(y.get(0));
+		wynagrodzenie = Integer.parseInt(y.get(1));
+
+		try {
+			stmt = conn.prepareStatement("CALL ustal_wynagrodzenie(?,?,?)");
+			stmt.setInt(1, zespol);
+			stmt.setInt(2, pracownik);
+			stmt.setInt(3, wynagrodzenie);
+
+			rs3 = stmt.executeQuery();
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+
 	}
 	private void ustal_czas_pracy_czlonka(ArrayList<String> y, ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure ustalajaca czas pracy czlonka zespolu");
+		int zespol, czas, pracownik;
+		zespol = x.get(1);
+		czas = Integer.parseInt(y.get(0));
+		pracownik = Integer.parseInt(y.get(1));
+
+		try {
+			stmt = conn.prepareStatement("CALL ustal_czas_pracy_czlonka(?,?,?)");
+			stmt.setInt(1, zespol);
+			stmt.setInt(2, czas);
+			stmt.setInt(3, pracownik);
+
+			rs3 = stmt.executeQuery();
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+
 	}
 	private void ustal_czas_pracy(ArrayList<String> y, ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure ustalajaca czas pracy zespolu");
@@ -613,15 +649,37 @@ public class Procedures_manager {
 	}
 	private void zatwierdz_wynagrodzenie(ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure zatwierdzajaca wynagrodzenie w zespole");
+		int zespol = x.get(1);
+
+		try {
+			stmt = conn.prepareStatement("CALL zatwierdz_wynagrodzenie(?)");
+			stmt.setInt(1, zespol);
+			rs3 = stmt.executeQuery();
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+
 	}
 	private void zatwierdz_czas_pracy(ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure zatwierdzajaca czas pracy w zespole");
+		int zespol = x.get(1);
+
+		try {
+			stmt = conn.prepareStatement("CALL zatwierdz_czas_pracy(?)");
+			stmt.setInt(1, zespol);
+			rs3 = stmt.executeQuery();
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+
 	}
 	private void usun_z_zespolu(ArrayList<String> x , ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure usuwajaca czlonka z zespolu");
 		int id_zesp = y.get(1);
 		int czlonek =Integer.parseInt(x.get(0));
-		String sql = "CALL usun_z_zespolu(??)";
+		String sql = "CALL usun_z_zespolu(?,?)";
 		try {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id_zesp);
@@ -768,6 +826,80 @@ public class Procedures_manager {
 	}
 	private void sprawdz_bilans(ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure wyswietlajaca bilans dzialu");
+
+		result = new ArrayList<>();
+		int dzial = x.get(2);
+		String id_zl, wart_zl, zesp;
+		result.add("id zlecenia;wartosc zlecenia");
+
+		try {
+			stmt = conn.prepareStatement("CALL sprawdz_bilans_zlecen (?)");
+			stmt.setInt(1, dzial);
+			rs3 = stmt.executeQuery();
+			while(rs3.next()) {
+				id_zl = rs3.getString("id_zlecenia");
+				wart_zl = rs3.getString("wartosc_zlecenia");
+				result.add(id_zl + ";" + wart_zl);
+			}
+
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+
+		result.add(null);
+		result.add("id zespolu;budzet");
+
+		try {
+			stmt = conn.prepareStatement("CALL sprawdz_bilans_zespolow (?)");
+			stmt.setInt(1, dzial);
+			rs3 = stmt.executeQuery();
+			while(rs3.next()) {
+				id_zl = rs3.getString("id_zespołu");
+				wart_zl = rs3.getString("budżet");
+				result.add(id_zl + ";" + wart_zl);
+			}
+
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+
+		result.add(null);
+		result.add("id projektu;budzet;realizujacy zespol");
+
+		try {
+			stmt = conn.prepareStatement("CALL sprawdz_bilans_projektow (?)");
+			stmt.setInt(1, dzial);
+			rs3 = stmt.executeQuery();
+			while(rs3.next()) {
+				id_zl = rs3.getString("id_projektu");
+				wart_zl = rs3.getString("przydzielony_budżet");
+				zesp = rs3.getString("zespol");
+				result.add(id_zl + ";" + wart_zl + ";" + zesp);
+			}
+
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+
+		result.add(null);
+		result.add("przychod z projektow");
+
+		try {
+			stmt = conn.prepareStatement("SELECT sprawdz_bilans_budzetow (?) AS wynik");
+			stmt.setInt(1, dzial);
+			rs3 = stmt.executeQuery();
+			while (rs3.next()) {
+				id_zl = rs3.getString("wynik");
+				result.add(id_zl);
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+
 	}
 	private void zlecenie_info(ArrayList<String> x, ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure wyswietlajaca informacje o zleceniu");
@@ -804,6 +936,16 @@ public class Procedures_manager {
 	}
 	private void zatwierdz_budzet(ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure zatwierdzjaca budzet zespolow w dziale");
+		int dzial = x.get(2);
+		String st = "CALL zatwierdz_budzet(?)";
+		try {
+			stmt = conn.prepareStatement(st);
+			stmt.setInt(1, dzial);
+			rs3 = stmt.executeQuery();
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 	private void zm_zarzadcy_zespolu(ArrayList<String> x, ArrayList<Integer> y) {
 		System.out.println("Uruchamiam procedure zmieniajaca zarzadce w dziale");
@@ -951,15 +1093,69 @@ public class Procedures_manager {
 		}
 		
 	}
-	private void zamknij_dzial(ArrayList<Integer> x) {
+	private void zamknij_dzial(ArrayList<String> arg, ArrayList<Integer> x) {
 		System.out.println("Uruchamiam procedure zamykajaca dzial");
-		
+
+		int dzialZamykany = x.get(2);
+		int dzialDocelowy = Integer.parseInt(arg.get(0));
+
+		String zapyt = "CALL zamknij_dzial(?,?)";
+		try {
+			stmt = conn.prepareStatement(zapyt);
+			stmt.setInt(1, dzialZamykany);
+			stmt.setInt(2, dzialDocelowy);
+			rs3 = stmt.executeQuery();
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+
 	}
 	private void wczyt_backup() {
 		System.out.println("Wczytuje backup bazy danych");
 	}
 	private void dynamiczne(ArrayList<String> arg) {
 		System.out.println("Rozpoczynam budowe dynamicznego zapytania");
+
+		result = new ArrayList<>();
+
+		LinkedList<String> niedozwolone = new LinkedList<>();
+		niedozwolone.add("UPDATE");
+		niedozwolone.add("INSERT");
+		niedozwolone.add("DELETE");
+		niedozwolone.add("DROP");
+		niedozwolone.add("ALTER");
+		niedozwolone.add("--");
+		niedozwolone.add("/*");
+		niedozwolone.add("#");
+		niedozwolone.add(";");
+		niedozwolone.add("\"");
+		niedozwolone.add("'");
+
+		for (String a : arg) {
+			for (String n : niedozwolone) {
+				if (a.toUpperCase().contains(n)) {
+					System.out.println("Niedozwolone znaki!");
+					return; // TODO: throw Exception
+				}
+			}
+		}
+
+		String zapytanie = "SELECT " + arg.get(0) + " FROM " + arg.get(1) + " WHERE " + arg.get(2);
+
+		try {
+			stmt = conn.prepareStatement(zapytanie);
+			rs3 = stmt.executeQuery();
+			String kol = arg.get(0);
+			result.add(kol);
+			while (rs3.next()) {
+				result.add(rs3.getString(kol));
+			}
+		}
+		catch (SQLException sqlx) {
+			sqlx.printStackTrace();
+		}
+
 	}
 	private void wyk_backup() {
 		System.out.println("Wykonuje backup bazy danych");

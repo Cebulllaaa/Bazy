@@ -138,42 +138,60 @@ public class PracownikFrame extends JFrame {
 
 			if (akcja.contentEquals("liczba godzin pracownika")) {
 				ArrayList<String> wynik = connection.use_procedure(Procedures.LICZBA_GODZIN_PRACOWNIKA, null, accesses, effectiveIDs);
-				// TODO
+System.out.println(wynik);
+				ResultFrame rf = new ResultFrame(wynik);
+				rf.setTitle(akcja);
+				rf.setVisible(true);
 				wykonano = true;
 				return;
 			}
 
 			if (akcja.contentEquals("wynagrodzenie pracownika")) {
 				ArrayList<String> wynik = connection.use_procedure(Procedures.WYNAGRODZENIE_PRACOWNIKA, null, accesses, effectiveIDs);
-				// TODO
+System.out.println(wynik);
+				ResultFrame rf = new ResultFrame(wynik);
+				rf.setTitle(akcja);
+				rf.setVisible(true);
 				wykonano = true;
 				return;
 			}
 
 			if (akcja.contentEquals("zespoly pracownika")) {
 				ArrayList<String> wynik = connection.use_procedure(Procedures.ZESPOLY_PRACOWNIKA, null, accesses, effectiveIDs);
-				// TODO
+System.out.println(wynik);
+				ResultFrame rf = new ResultFrame(wynik);
+				rf.setTitle(akcja);
+				rf.setVisible(true);
 				wykonano = true;
 				return;
 			}
 
 			if (akcja.contentEquals("projekty pracownika")) {
 				ArrayList<String> wynik = connection.use_procedure(Procedures.PROJEKTY_PRACOWNIKA, null, accesses, effectiveIDs);
-				// TODO
+System.out.println(wynik);
+				ResultFrame rf = new ResultFrame(wynik);
+				rf.setTitle(akcja);
+				rf.setVisible(true);
 				wykonano = true;
 				return;
 			}
 
 			if (akcja.contentEquals("dane pracownika")) {
 				ArrayList<String> wynik = connection.use_procedure(Procedures.DANE_PRACOWNIKA, null, accesses, effectiveIDs);
-				// TODO
+System.out.println(wynik);
+				ResultFrame rf = new ResultFrame(wynik);
+				rf.setTitle(akcja);
+				rf.setVisible(true);
 				wykonano = true;
 				return;
 			}
 
 			if (akcja.contentEquals("historia pracownika")) {
 				ArrayList<String> wynik = connection.use_procedure(Procedures.HISTORIA_PRACOWNIKA, null, accesses, effectiveIDs);
-				// TODO
+System.out.println(wynik);
+				ResultFrame rf = new ResultFrame(wynik);
+				rf.setTitle(akcja);
+				rf.setVisible(true);
 				wykonano = true;
 				return;
 			}

@@ -102,7 +102,7 @@ CREATE TABLE `grupy_zespołów` (
 
 LOCK TABLES `grupy_zespołów` WRITE;
 /*!40000 ALTER TABLE `grupy_zespołów` DISABLE KEYS */;
-INSERT INTO `grupy_zespołów` VALUES (5,3,'Zarzadca',0,0),(6,4,'Byly pracownik',0,0),(7,14,'Zarzadca',0,0),(8,15,'Zarzadca',0,0),(9,16,'Zarzadca',0,0),(10,18,'Zarzadca',0,0),(11,18,'Byly zarzadca',0,0),(12,20,'Zarzadca',0,0),(13,24,'Zarzadca',0,0),(14,25,'Zarzadca',0,0),(15,26,'Zarzadca',0,0),(11,19,'Zarzadca',0,0),(7,5,'Obecny',0,0),(7,7,'Obecny',0,0),(7,21,'Obecny',0,0),(7,29,'Obecny',0,0),(7,35,'Obecny',0,0),(7,42,'Obecny',0,0),(7,44,'Obecny',0,0),(8,9,'Obecny',0,0),(8,18,'Obecny',0,0),(8,38,'Obecny',0,0),(8,27,'Obecny',0,0),(8,11,'Obecny',0,0),(8,49,'Obecny',0,0),(9,50,'Obecny',0,0),(9,32,'Obecny',0,0),(9,12,'Obecny',0,0),(9,17,'Obecny',0,0),(9,28,'Obecny',0,0),(9,41,'Obecny',0,0),(10,44,'Obecny',0,0),(10,10,'Obecny',0,0),(10,35,'Obecny',0,0),(10,38,'Obecny',0,0),(10,47,'Obecny',0,0),(10,46,'Obecny',0,0),(11,37,'Obecny',0,0),(11,11,'Obecny',0,0),(11,49,'Obecny',0,0),(11,17,'Obecny',0,0),(11,22,'Obecny',0,0),(11,23,'Obecny',0,0),(12,12,'Obecny',0,0),(12,43,'Obecny',0,0),(12,42,'Obecny',0,0),(12,41,'Obecny',0,0),(12,40,'Obecny',0,0),(12,3,'Obecny',0,0),(12,2,'Obecny',0,0),(13,2,'Obecny',0,0),(13,11,'Obecny',0,0),(13,27,'Obecny',0,0),(13,32,'Obecny',0,0),(13,36,'Obecny',0,0),(13,49,'Obecny',0,0),(13,50,'Obecny',0,0),(14,41,'Obecny',0,0),(14,30,'Obecny',0,0),(14,14,'Obecny',0,0),(14,22,'Obecny',0,0),(15,18,'Obecny',0,0),(15,19,'Obecny',0,0),(15,21,'Obecny',0,0),(15,23,'Obecny',0,0),(15,31,'Obecny',0,0),(15,44,'Obecny',0,0);
+INSERT INTO `grupy_zespołów` VALUES (5,3,'Zarzadca',0,0),(6,4,'Byly pracownik',0,0),(7,14,'Usuniety',0,0),(8,15,'Usuniety',0,0),(9,16,'Usuniety',0,0),(10,18,'Zarzadca',0,0),(11,18,'Byly zarzadca',0,0),(12,20,'Zarzadca',0,0),(13,24,'Zarzadca',0,0),(14,25,'Zarzadca',0,0),(15,26,'Zarzadca',0,0),(11,19,'Zarzadca',0,0),(7,5,'Usuniety',0,0),(7,7,'Usuniety',0,0),(7,21,'Usuniety',0,0),(7,29,'Usuniety',0,0),(7,35,'Usuniety',0,0),(7,42,'Usuniety',0,0),(7,44,'Usuniety',0,0),(8,9,'Usuniety',0,0),(8,18,'Usuniety',0,0),(8,38,'Usuniety',0,0),(8,27,'Usuniety',0,0),(8,11,'Usuniety',0,0),(8,49,'Usuniety',0,0),(9,50,'Usuniety',0,0),(9,32,'Usuniety',0,0),(9,12,'Usuniety',0,0),(9,17,'Usuniety',0,0),(9,28,'Usuniety',0,0),(9,41,'Usuniety',0,0),(10,44,'Obecny',0,0),(10,10,'Obecny',0,0),(10,35,'Obecny',0,0),(10,38,'Obecny',0,0),(10,47,'Obecny',0,0),(10,46,'Obecny',0,0),(11,37,'Obecny',0,0),(11,11,'Obecny',0,0),(11,49,'Obecny',0,0),(11,17,'Obecny',0,0),(11,22,'Obecny',0,0),(11,23,'Obecny',0,0),(12,12,'Obecny',0,0),(12,43,'Obecny',0,0),(12,42,'Obecny',0,0),(12,41,'Obecny',0,0),(12,40,'Obecny',0,0),(12,3,'Obecny',0,0),(12,2,'Obecny',0,0),(13,2,'Obecny',0,0),(13,11,'Obecny',0,0),(13,27,'Obecny',0,0),(13,32,'Obecny',0,0),(13,36,'Obecny',0,0),(13,49,'Obecny',0,0),(13,50,'Obecny',0,0),(14,41,'Obecny',0,0),(14,30,'Obecny',0,0),(14,14,'Obecny',0,0),(14,22,'Obecny',0,0),(15,18,'Obecny',0,0),(15,19,'Obecny',0,0),(15,21,'Obecny',0,0),(15,23,'Obecny',0,0),(15,31,'Obecny',0,0),(15,44,'Obecny',0,0),(5,13,'Obecny',0,0),(5,52,'Usuniety',0,0),(5,51,'Przeniesiony',0,0),(7,15,'Usuniety',0,0),(5,12,'Obecny',0,0);
 /*!40000 ALTER TABLE `grupy_zespołów` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +142,7 @@ CREATE TABLE `klienci` (
   `id_klienta` int(11) NOT NULL AUTO_INCREMENT,
   `nazwa_klienta` varchar(90) NOT NULL DEFAULT '',
   PRIMARY KEY (`id_klienta`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +151,7 @@ CREATE TABLE `klienci` (
 
 LOCK TABLES `klienci` WRITE;
 /*!40000 ALTER TABLE `klienci` DISABLE KEYS */;
-INSERT INTO `klienci` VALUES (1,'Pierwszy klient'),(2,'Firma programistyczna A');
+INSERT INTO `klienci` VALUES (1,'Pierwszy klient'),(2,'Firma programistyczna A'),(3,'Klient Zesp 7');
 /*!40000 ALTER TABLE `klienci` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -346,7 +346,7 @@ CREATE TABLE `zespoły` (
 
 LOCK TABLES `zespoły` WRITE;
 /*!40000 ALTER TABLE `zespoły` DISABLE KEYS */;
-INSERT INTO `zespoły` VALUES (5,3,'Zespol A',1,0,0),(6,4,'Zespol B',1,0,0),(7,14,'Zespol 3D A',2,0,0),(8,15,'Zespol 3D B',2,0,0),(9,16,'Zespol 2D A',2,0,0),(10,18,'Zespol  do spraw Linuxa A',3,0,0),(11,19,'Zespol  do spraw Linuxa B',3,0,0),(12,20,'Zespol  do spraw Windowsa A',3,0,0),(13,24,'Zespol  AA',4,0,0),(14,25,'Zespol  AB',4,0,42),(15,26,'Zespol  AC',4,0,0);
+INSERT INTO `zespoły` VALUES (5,3,'Zespol A',1,10000,1212),(6,4,'Zespol B',1,5000,0),(7,14,'Zespol 3D A',2,0,0),(8,15,'Zespol 3D B',2,0,0),(9,16,'Zespol 2D A',2,0,0),(10,18,'Zespol  do spraw Linuxa A',3,0,0),(11,19,'Zespol  do spraw Linuxa B',3,0,0),(12,20,'Zespol  do spraw Windowsa A',3,0,0),(13,24,'Zespol  AA',4,0,0),(14,25,'Zespol  AB',4,20000,42),(15,26,'Zespol  AC',4,0,0);
 /*!40000 ALTER TABLE `zespoły` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -736,7 +736,8 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`BazyUser`@`localhost` PROCEDURE `historia_pracownika`(IN prac int)
 BEGIN
- SELECT DISTINCT zespoły.id_zespołu, zespoły.nazwa_zespołu, projekty.id_projektu, projekty.nazwa_projektu
+ SELECT DISTINCT zespoły.id_zespołu, zespoły.nazwa_zespołu, projekty.id_projektu,
+  projekty.nazwa_projektu, projekty.status, grupy_zespołów.status
   FROM (SELECT * FROM pracownik WHERE id_pracownika = prac) AS P JOIN grupy_zespołów ON P.id_pracownika = grupy_zespołów.pracownik
    JOIN zespoły ON zespoły.id_zespołu = grupy_zespołów.zespoł JOIN projekty ON projekty.zespol = zespoły.id_zespołu;
 END ;;
@@ -1224,6 +1225,65 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `zamknij_dzial` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`BazyUser`@`localhost` PROCEDURE `zamknij_dzial`(IN dz int, IN movDZ int)
+BEGIN
+ DECLARE done int DEFAULT FALSE;
+ DECLARE IDzl int;
+ DECLARE IDprac int;
+ DECLARE IDzesp int;
+
+ DECLARE zlec CURSOR FOR SELECT id_zlecenia FROM zlecenia WHERE dzial = dz;
+ DECLARE pracZesp CURSOR FOR SELECT grupy_zespołów.pracownik, grupy_zespołów.zespoł FROM grupy_zespołów JOIN zespoły
+  ON grupy_zespołów.zespoł = zespoły.id_zespołu WHERE zespoły.dział = dz;
+
+ DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+ OPEN zlec;
+
+ WHILE NOT done DO
+ BEGIN
+  FETCH zlec INTO IDzl;
+
+  CALL przeniesienie_zlecenia(IDzl, movDZ); 
+
+ END;
+ END WHILE;
+
+ CLOSE zlec;
+
+ SET done = FALSE;
+
+ OPEN pracZesp;
+
+ WHILE NOT done DO
+ BEGIN
+  FETCH pracZesp INTO IDprac, IDzesp;
+
+  CALL usun_z_zespolu(IDzesp, IDprac); 
+
+ END;
+ END WHILE;
+
+ CLOSE pracZesp;
+
+
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `zatwierdz_budzet` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1597,4 +1657,4 @@ USE `aplikacja_baza`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-30 22:19:18
+-- Dump completed on 2021-01-31  7:21:00

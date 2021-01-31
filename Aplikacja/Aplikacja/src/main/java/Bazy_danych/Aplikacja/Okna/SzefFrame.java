@@ -53,11 +53,8 @@ public class SzefFrame extends ZarzDzialuFrame {
 		polecenia.add("ZM zarzadcy dzialu");
 		polecenia.add("przeniesienie zlecenia");
 		polecenia.add("zamknij dzial");
+		polecenia.add("zapytanie z parametrami");
 
-		/*
-		 * TODO:
-		 * polecenia.add("zapytanie z parametrami");
-		 */
 	}
 
 	@Override
@@ -275,6 +272,7 @@ public class SzefFrame extends ZarzDzialuFrame {
 				JTextField data1 = new JTextField();
 
 				info0.setEditable(false);
+				info1.setEditable(false);
 
 				comDialog.dodaj(info0);
 				comDialog.dodaj(info1);
@@ -294,7 +292,61 @@ public class SzefFrame extends ZarzDzialuFrame {
 			}
 
 			if (akcja.contentEquals("zamknij dzial")) {
-				connection.use_procedure(Procedures.ZAMKNIJ_DZIAL, null, accesses, effectiveIDs);
+				ComDialog comDialog = new ComDialog(2,2);
+
+				JTextField info0 = new JTextField("dzial docelowy");
+				JTextField data0 = new JTextField();
+
+				info0.setEditable(false);
+
+				comDialog.dodaj(info0);
+				comDialog.dodaj(data0);
+
+				comDialog.setVisible(true);
+
+				ArrayList<String> args = new ArrayList<>();
+
+				args.add(data0.getText());
+
+				connection.use_procedure(Procedures.ZAMKNIJ_DZIAL, args, accesses, effectiveIDs);
+				wykonano = true;
+				return;
+			}
+
+			if (akcja.contentEquals("zapytanie z parametrami")) {
+				ComDialog comDialog = new ComDialog(2,3);
+
+				JTextField info0 = new JTextField("kolumna");
+				JTextField info1 = new JTextField("tabela");
+				JTextField info2 = new JTextField("warunek");
+				JTextField data0 = new JTextField();
+				JTextField data1 = new JTextField();
+				JTextField data2 = new JTextField();
+
+				info0.setEditable(false);
+				info1.setEditable(false);
+				info2.setEditable(false);
+
+				comDialog.dodaj(info0);
+				comDialog.dodaj(info1);
+				comDialog.dodaj(info2);
+				comDialog.dodaj(data0);
+				comDialog.dodaj(data1);
+				comDialog.dodaj(data2);
+
+				comDialog.setVisible(true);
+
+				ArrayList<String> args = new ArrayList<>();
+
+				args.add(data0.getText());
+				args.add(data1.getText());
+				args.add(data2.getText());
+
+				ArrayList<String> wynik = connection.use_procedure(Procedures.DYNAMICZNE, args, accesses, effectiveIDs);
+System.out.println(wynik);
+				ResultFrame rf = new ResultFrame(wynik);
+				rf.setTitle(akcja);
+				rf.setVisible(true);
 				wykonano = true;
 				return;
 			}
@@ -318,9 +370,9 @@ public class SzefFrame extends ZarzDzialuFrame {
 				try {
 					pd.setVisible(true);
 					Process proc = runtime.exec("mysqldump -B aplikacja_baza -R --add-drop-database -u BazyUser -p123 -r " + sciezka_do_bazy);
-System.out.println("Backupuje");
+//System.out.println("Backupuje");
 					int wynik = proc.waitFor();
-System.out.println("Backup zrobiony");
+//System.out.println("Backup zrobiony");
 
 					if (wynik == 0) {
 						id.setText("Utworzono backup");
@@ -346,9 +398,9 @@ System.out.println("Backup zrobiony");
 				try {
 					pd.setVisible(true);
 					Process proc = runtime.exec(new String[]{"mysql", "-uBazyUser", "-p123", "-e", "source " + sciezka_do_bazy});
-System.out.println("Odtwarzam"); //+"mariadb -u BazyUser -p123 -e \"source " + sciezka_do_bazy + "\"");
+//System.out.println("Odtwarzam"); //+"mariadb -u BazyUser -p123 -e \"source " + sciezka_do_bazy + "\"");
 					int wynik = proc.waitFor();
-System.out.println("Odtworzylem");
+//System.out.println("Odtworzylem");
 
 					if (wynik == 0) {
 						id.setText("Odtworzono backup");
