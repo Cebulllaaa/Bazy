@@ -102,7 +102,7 @@ CREATE TABLE `grupy_zespołów` (
 
 LOCK TABLES `grupy_zespołów` WRITE;
 /*!40000 ALTER TABLE `grupy_zespołów` DISABLE KEYS */;
-INSERT INTO `grupy_zespołów` VALUES (5,3,'Zarzadca',0,0),(6,4,'Byly pracownik',0,0),(7,14,'Zarzadca',0,0),(8,15,'Zarzadca',0,0),(9,16,'Zarzadca',0,0),(10,18,'Zarzadca',0,0),(11,18,'Byly zarzadca',0,0),(12,20,'Zarzadca',0,0),(13,24,'Zarzadca',0,0),(14,25,'Zarzadca',0,0),(15,26,'Zarzadca',0,0),(11,19,'Zarzadca',0,0),(7,5,'Obecny',0,0),(7,7,'Obecny',0,0),(7,21,'Obecny',0,0),(7,29,'Obecny',0,0),(7,35,'Obecny',0,0),(7,42,'Obecny',0,0),(7,44,'Obecny',0,0),(8,9,'Obecny',0,0),(8,18,'Obecny',0,0),(8,38,'Obecny',0,0),(8,27,'Obecny',0,0),(8,11,'Obecny',0,0),(8,49,'Obecny',0,0),(9,50,'Obecny',0,0),(9,32,'Obecny',0,0),(9,12,'Obecny',0,0),(9,17,'Obecny',0,0),(9,28,'Obecny',0,0),(9,41,'Obecny',0,0),(10,44,'Obecny',0,0),(10,10,'Obecny',0,0),(10,35,'Obecny',0,0),(10,38,'Obecny',0,0),(10,47,'Obecny',0,0),(10,46,'Obecny',0,0),(11,37,'Obecny',0,0),(11,11,'Obecny',0,0),(11,49,'Obecny',0,0),(11,17,'Obecny',0,0),(11,22,'Obecny',0,0),(11,23,'Obecny',0,0),(12,12,'Obecny',0,0),(12,43,'Obecny',0,0),(12,42,'Obecny',0,0),(12,41,'Obecny',0,0),(12,40,'Obecny',0,0),(12,3,'Obecny',0,0),(12,2,'Obecny',0,0),(13,2,'Obecny',0,0),(13,11,'Obecny',0,0),(13,27,'Obecny',0,0),(13,32,'Obecny',0,0),(13,36,'Obecny',0,0),(13,49,'Obecny',0,0),(13,50,'Obecny',0,0),(14,41,'Obecny',0,0),(14,30,'Obecny',0,0),(14,14,'Obecny',0,0),(14,22,'Obecny',0,0),(15,18,'Obecny',0,0),(15,19,'Obecny',0,0),(15,21,'Obecny',0,0),(15,23,'Obecny',0,0),(15,31,'Obecny',0,0),(15,44,'Obecny',0,0);
+INSERT INTO `grupy_zespołów` VALUES (5,3,'Zarzadca',10000,0),(6,4,'Byly pracownik',0,0),(7,14,'Zarzadca',0,0),(8,15,'Zarzadca',15000,0),(9,16,'Zarzadca',0,0),(10,18,'Zarzadca',0,0),(11,18,'Byly zarzadca',0,0),(12,20,'Zarzadca',0,0),(13,24,'Zarzadca',0,0),(14,25,'Zarzadca',0,0),(15,26,'Zarzadca',0,0),(11,19,'Zarzadca',0,0),(7,5,'Obecny',0,0),(7,7,'Obecny',0,0),(7,21,'Obecny',0,0),(7,29,'Obecny',0,0),(7,35,'Obecny',0,0),(7,42,'Obecny',0,0),(7,44,'Obecny',0,0),(8,9,'Obecny',0,0),(8,18,'Obecny',0,0),(8,38,'Obecny',0,0),(8,27,'Obecny',0,0),(8,11,'Obecny',0,0),(8,49,'Obecny',0,0),(9,50,'Obecny',0,0),(9,32,'Obecny',0,0),(9,12,'Obecny',0,0),(9,17,'Obecny',0,0),(9,28,'Obecny',0,0),(9,41,'Obecny',0,0),(10,44,'Obecny',0,0),(10,10,'Obecny',0,0),(10,35,'Obecny',0,0),(10,38,'Obecny',0,0),(10,47,'Obecny',0,0),(10,46,'Obecny',0,0),(11,37,'Obecny',0,0),(11,11,'Obecny',0,0),(11,49,'Obecny',0,0),(11,17,'Obecny',0,0),(11,22,'Obecny',0,0),(11,23,'Obecny',0,0),(12,12,'Obecny',0,0),(12,43,'Obecny',0,0),(12,42,'Obecny',0,0),(12,41,'Obecny',0,0),(12,40,'Obecny',0,0),(12,3,'Obecny',0,0),(12,2,'Obecny',0,0),(13,2,'Obecny',0,0),(13,11,'Obecny',0,0),(13,27,'Obecny',0,0),(13,32,'Obecny',0,0),(13,36,'Obecny',0,0),(13,49,'Obecny',0,0),(13,50,'Obecny',0,0),(14,41,'Obecny',0,0),(14,30,'Obecny',0,0),(14,14,'Obecny',0,0),(14,22,'Obecny',0,0),(15,18,'Obecny',0,0),(15,19,'Obecny',0,0),(15,21,'Obecny',0,0),(15,23,'Obecny',0,0),(15,31,'Obecny',0,0),(15,44,'Obecny',0,0);
 /*!40000 ALTER TABLE `grupy_zespołów` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -220,7 +220,7 @@ CREATE TABLE `pracownik` (
 
 LOCK TABLES `pracownik` WRITE;
 /*!40000 ALTER TABLE `pracownik` DISABLE KEYS */;
-INSERT INTO `pracownik` VALUES (1,'Bartosz','Cybulski',0,0),(2,'Kazimierz','Jan',0,0),(3,'Kazimierz','Jan',0,0),(4,'Janusz','Polak',0,0),(5,'Andrzej','Tomasz',0,0),(6,'Janusz','Tracz',0,0),(7,'Komisarz','Ryba',0,0),(8,'Elzbieta','Ryba',0,0),(9,'Halina','Fredrika',0,0),(10,'Bogdan','Bogdarenko',0,0),(11,'Ireneusz','Bogdarenko',0,0),(12,'Gilber','Bogdarenko',0,0),(13,'Jacek','Jacak',0,0),(14,'Omi','Xiao',0,0),(15,'Clay','Xiao',0,0),(16,'Kimikko','Xiao',0,0),(17,'Kazuma','Satou',0,0),(18,'Harry','Potter',0,0),(19,'Ronald','Weasley',0,0),(20,'Hermiona','Weasley',0,0),(21,'Rudolf','Kowalski',0,0),(22,'Izabella','Lecka',0,0),(23,'Piotr','Piotrowicz',0,0),(24,'Janusz','Nosacz',0,0),(25,'Grazyna','Nosacz',0,0),(26,'Somsiad','Nosacz',0,0),(27,'Konrad','Kowalski',0,0),(28,'Isaac','Newton',0,0),(29,'Krystian','Kozanowski',0,0),(30,'Ignacy','Krystka',0,0),(31,'Ignacy','Krystka',0,0),(32,'Janek','Krystka',0,0),(33,'Jacek','Soplica',0,0),(34,'Kamila','Grabie',0,0),(35,'Justyna','Jozkow',0,0),(36,'Amelia','Jozkow',0,0),(37,'Zygmund','Nowak',0,0),(38,'Eustachy','Motyka',0,0),(39,'Michal','Aniol',0,0),(40,'Waldemar','Nowak',0,0),(41,'Zgigniew','Owad',0,0),(42,'Kuba','Wojewodzki',0,0),(43,'Gregorij','Trajajenko',0,0),(44,'Witold','Trajajenko',0,0),(45,'Michalina','Trajajenko',0,0),(46,'Zuzanna','Nowak',0,0),(47,'Michal','Nowak',0,0),(48,'Bartlomiej','Bartolomeo',0,0),(49,'Zenek','Bartolomeo',0,0),(50,'Kamil','Kowalski',0,0),(51,'Adam','Krzanek',0,0),(52,'Tester','Toster',0,0);
+INSERT INTO `pracownik` VALUES (1,'Bartosz','Cybulski',0,0),(2,'Kazimierz','Jan',0,0),(3,'Kazimierz','Jan',10000,0),(4,'Janusz','Polak',0,0),(5,'Andrzej','Tomasz',0,0),(6,'Janusz','Tracz',0,0),(7,'Komisarz','Ryba',0,0),(8,'Elzbieta','Ryba',0,0),(9,'Halina','Fredrika',0,0),(10,'Bogdan','Bogdarenko',0,0),(11,'Ireneusz','Bogdarenko',0,0),(12,'Gilber','Bogdarenko',0,0),(13,'Jacek','Jacak',0,0),(14,'Omi','Xiao',0,0),(15,'Clay','Xiao',0,0),(16,'Kimikko','Xiao',0,0),(17,'Kazuma','Satou',0,0),(18,'Harry','Potter',0,0),(19,'Ronald','Weasley',0,0),(20,'Hermiona','Weasley',0,0),(21,'Rudolf','Kowalski',0,0),(22,'Izabella','Lecka',0,0),(23,'Piotr','Piotrowicz',0,0),(24,'Janusz','Nosacz',0,0),(25,'Grazyna','Nosacz',0,0),(26,'Somsiad','Nosacz',0,0),(27,'Konrad','Kowalski',0,0),(28,'Isaac','Newton',0,0),(29,'Krystian','Kozanowski',0,0),(30,'Ignacy','Krystka',0,0),(31,'Ignacy','Krystka',0,0),(32,'Janek','Krystka',0,0),(33,'Jacek','Soplica',0,0),(34,'Kamila','Grabie',0,0),(35,'Justyna','Jozkow',0,0),(36,'Amelia','Jozkow',0,0),(37,'Zygmund','Nowak',0,0),(38,'Eustachy','Motyka',0,0),(39,'Michal','Aniol',0,0),(40,'Waldemar','Nowak',0,0),(41,'Zgigniew','Owad',0,0),(42,'Kuba','Wojewodzki',0,0),(43,'Gregorij','Trajajenko',0,0),(44,'Witold','Trajajenko',0,0),(45,'Michalina','Trajajenko',0,0),(46,'Zuzanna','Nowak',0,0),(47,'Michal','Nowak',0,0),(48,'Bartlomiej','Bartolomeo',0,0),(49,'Zenek','Bartolomeo',0,0),(50,'Kamil','Kowalski',0,0),(51,'Adam','Krzanek',0,0),(52,'Tester','Toster',0,0);
 /*!40000 ALTER TABLE `pracownik` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -252,7 +252,7 @@ CREATE TABLE `projekty` (
 
 LOCK TABLES `projekty` WRITE;
 /*!40000 ALTER TABLE `projekty` DISABLE KEYS */;
-INSERT INTO `projekty` VALUES (2,'Realizowany',5,1,10000,'Pierwszy projekt'),(3,'Porzucony',6,1,5000,'Projekt Janusza'),(4,'Realizowany',14,2,20000,'Stworzenie prostej gry');
+INSERT INTO `projekty` VALUES (2,'Realizowany',5,1,15000,'Pierwszy projekt'),(3,'Porzucony',6,1,5000,'Projekt Janusza'),(4,'Realizowany',14,2,20000,'Stworzenie prostej gry');
 /*!40000 ALTER TABLE `projekty` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -346,7 +346,7 @@ CREATE TABLE `zespoły` (
 
 LOCK TABLES `zespoły` WRITE;
 /*!40000 ALTER TABLE `zespoły` DISABLE KEYS */;
-INSERT INTO `zespoły` VALUES (5,3,'Zespol A',1,0,0),(6,4,'Zespol B',1,0,0),(7,14,'Zespol 3D A',2,0,0),(8,15,'Zespol 3D B',2,0,0),(9,16,'Zespol 2D A',2,0,0),(10,18,'Zespol  do spraw Linuxa A',3,0,0),(11,19,'Zespol  do spraw Linuxa B',3,0,0),(12,20,'Zespol  do spraw Windowsa A',3,0,0),(13,24,'Zespol  AA',4,0,0),(14,25,'Zespol  AB',4,0,42),(15,26,'Zespol  AC',4,0,0);
+INSERT INTO `zespoły` VALUES (5,3,'Zespol A',1,15000,0),(6,4,'Zespol B',1,5000,0),(7,14,'Zespol 3D A',2,0,0),(8,15,'Zespol 3D B',2,0,0),(9,16,'Zespol 2D A',2,0,0),(10,18,'Zespol  do spraw Linuxa A',3,0,0),(11,19,'Zespol  do spraw Linuxa B',3,0,0),(12,20,'Zespol  do spraw Windowsa A',3,0,0),(13,24,'Zespol  AA',4,0,0),(14,25,'Zespol  AB',4,20000,42),(15,26,'Zespol  AC',4,0,0);
 /*!40000 ALTER TABLE `zespoły` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -1657,4 +1657,4 @@ USE `aplikacja_baza`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-31 15:06:27
+-- Dump completed on 2021-01-31 16:39:26

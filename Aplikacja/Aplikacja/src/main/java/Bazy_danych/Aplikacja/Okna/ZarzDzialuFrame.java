@@ -78,7 +78,7 @@ public class ZarzDzialuFrame extends ZarzZespoluFrame {
 
 				args.add(data0.getText());
 
-				connection.use_procedure(null, args, accesses, effectiveIDs); // TODO
+				connection.use_procedure(Procedures.DODAJ_DOSTAWCE, args, accesses, effectiveIDs);
 				wykonano = true;
 				return;
 			}
@@ -108,18 +108,23 @@ public class ZarzDzialuFrame extends ZarzZespoluFrame {
 			if (akcja.contentEquals("dodaj zakup")) {
 				ComDialog comDialog = new ComDialog(2,2);
 
-				JTextField info0 = new JTextField("nazwa produktu");
-				JTextField info1 = new JTextField("nazwa dostawcy");
+				JTextField info0 = new JTextField("nazwa dostawcy");
+				JTextField info1 = new JTextField("nazwa produktu");
+				JTextField info2 = new JTextField("wartosc produktu");
 				JTextField data0 = new JTextField();
 				JTextField data1 = new JTextField();
+				JTextField data2 = new JTextField();
 
 				info0.setEditable(false);
 				info1.setEditable(false);
+				info2.setEditable(false);
 
 				comDialog.dodaj(info0);
 				comDialog.dodaj(info1);
+				comDialog.dodaj(info2);
 				comDialog.dodaj(data0);
 				comDialog.dodaj(data1);
+				comDialog.dodaj(data2);
 
 				comDialog.setVisible(true);
 
@@ -127,6 +132,7 @@ public class ZarzDzialuFrame extends ZarzZespoluFrame {
 
 				args.add(data0.getText());
 				args.add(data1.getText());
+				args.add(data2.getText());
 
 				connection.use_procedure(Procedures.ZAKUP_PRODUKT, args, accesses, effectiveIDs);
 				wykonano = true;
@@ -165,7 +171,7 @@ public class ZarzDzialuFrame extends ZarzZespoluFrame {
 				ComDialog comDialog = new ComDialog(2,2);
 
 				JTextField info0 = new JTextField("ID projektu");
-				JTextField info1 = new JTextField("wartosc projektu");
+				JTextField info1 = new JTextField("budzet projektu");
 				JTextField data0 = new JTextField();
 				JTextField data1 = new JTextField();
 
@@ -190,25 +196,20 @@ public class ZarzDzialuFrame extends ZarzZespoluFrame {
 			}
 
 			if (akcja.contentEquals("utworz projekt")) {
-				ComDialog comDialog = new ComDialog(2,3);
+				ComDialog comDialog = new ComDialog(2,2);
 
-				JTextField info0 = new JTextField("nazwa projektu");
-				JTextField info1 = new JTextField("ID zlecenia");
-				JTextField info2 = new JTextField("ID zespolu");
+				JTextField info0 = new JTextField("ID zlecenia");
+				JTextField info1 = new JTextField("nazwa projektu");
 				JTextField data0 = new JTextField();
 				JTextField data1 = new JTextField();
-				JTextField data2 = new JTextField();
 
 				info0.setEditable(false);
 				info1.setEditable(false);
-				info2.setEditable(false);
 
 				comDialog.dodaj(info0);
 				comDialog.dodaj(info1);
-				comDialog.dodaj(info2);
 				comDialog.dodaj(data0);
 				comDialog.dodaj(data1);
-				comDialog.dodaj(data2);
 
 				comDialog.setVisible(true);
 
@@ -216,7 +217,6 @@ public class ZarzDzialuFrame extends ZarzZespoluFrame {
 
 				args.add(data0.getText());
 				args.add(data1.getText());
-				args.add(data2.getText());
 
 				connection.use_procedure(Procedures.UTWORZ_PROJEKT, args, accesses, effectiveIDs);
 				wykonano = true;
@@ -389,25 +389,19 @@ System.out.println(w4);
 			if (akcja.contentEquals("ZM zarzadcy zespolu")) {
 				ComDialog comDialog = new ComDialog(2,2);
 
-				JTextField info0 = new JTextField("ID zespolu");
-				JTextField info1 = new JTextField("ID nowego zarzadcy");
+				JTextField info0 = new JTextField("ID nowego zarzadcy");
 				JTextField data0 = new JTextField();
-				JTextField data1 = new JTextField();
 
 				info0.setEditable(false);
-				info1.setEditable(false);
 
 				comDialog.dodaj(info0);
-				comDialog.dodaj(info1);
 				comDialog.dodaj(data0);
-				comDialog.dodaj(data1);
 
 				comDialog.setVisible(true);
 
 				ArrayList<String> args = new ArrayList<>();
 
 				args.add(data0.getText());
-				args.add(data1.getText());
 
 				connection.use_procedure(Procedures.ZM_ZARZADCY_ZESPOLU, args, accesses, effectiveIDs);
 				wykonano = true;
@@ -415,7 +409,7 @@ System.out.println(w4);
 			}
 
 			if (akcja.contentEquals("rozwiaz zespol")) {
-				ComDialog comDialog = new ComDialog(2,1);
+/*				ComDialog comDialog = new ComDialog(2,1);
 
 				JTextField info0 = new JTextField("ID zespolu");
 				JTextField data0 = new JTextField();
@@ -431,7 +425,7 @@ System.out.println(w4);
 
 				args.add(data0.getText());
 
-				connection.use_procedure(Procedures.ROZWIAZ_ZESPOL, args, accesses, effectiveIDs);
+*/				connection.use_procedure(Procedures.ROZWIAZ_ZESPOL, null, accesses, effectiveIDs);
 				wykonano = true;
 				return;
 			}

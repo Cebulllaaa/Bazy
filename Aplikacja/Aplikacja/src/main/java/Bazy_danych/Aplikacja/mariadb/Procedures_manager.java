@@ -1,5 +1,8 @@
 package Bazy_danych.Aplikacja.mariadb;
 
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,9 +11,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JTextField;
+
 import Bazy_danych.Aplikacja.Bezpieczenstwo.Acces;
 
 public class Procedures_manager {
+	private StatusDialog sd = new StatusDialog();
 	private Connection conn;
 	private PreparedStatement stmt;
 	private ResultSet rs3;
@@ -166,6 +174,14 @@ public class Procedures_manager {
 		else if(proc.equals(Procedures.PROJEKTY_ZESPOLU)) {
 			if(acc.contains(Acces.ZARZADCA_ZESPOLU)) {
 				projekty_zespolu(id);
+			}
+			else {
+				System.out.println("Brak odpowiednich uprawnien");
+			}
+		}
+		else if (proc.equals(Procedures.DODAJ_DOSTAWCE)) {
+			if (acc.contains(Acces.ZARZADCA_DZIALU)) {
+				dodaj_dostawce(args);
 			}
 			else {
 				System.out.println("Brak odpowiednich uprawnien");
@@ -381,10 +397,13 @@ public class Procedures_manager {
 			stmt.setInt(1, id_prac);
 			stmt.setString(2, haslo);
 			rs3 = stmt.executeQuery();
-			
+
+			sd.infoSukces();
+
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 		
 	}
@@ -399,9 +418,11 @@ public class Procedures_manager {
 			stmt.setInt(1, id_zesp);
 			stmt.setInt(2, id_prac);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void liczba_godzin_pracownika(ArrayList<Integer> x) {
@@ -416,6 +437,7 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id_prac);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 			while(rs3.next()) {
 				zesp = rs3.getString("zespoł");
 				godz = rs3.getString("godziny");
@@ -425,6 +447,7 @@ public class Procedures_manager {
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void wynagrodzenie_pracownika(ArrayList<Integer> x) {
@@ -439,6 +462,7 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id_prac);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 			while(rs3.next()) {
 				zesp = rs3.getString("zespoł");
 				wyn = rs3.getString("wynagrodzenie");
@@ -447,6 +471,7 @@ public class Procedures_manager {
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 		
 	}
@@ -463,6 +488,7 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id_prac);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 			while(rs3.next()) {
 				zesp = rs3.getString("zespoł");
 				nazwa = rs3.getString("nazwa_zespołu");
@@ -472,6 +498,7 @@ public class Procedures_manager {
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void projekty_pracownika(ArrayList<Integer> x) {
@@ -487,6 +514,7 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id_prac);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 			while(rs3.next()) {
 				projekt = rs3.getString("id_projektu");
 				nazwa = rs3.getString("nazwa_projektu");
@@ -496,6 +524,7 @@ public class Procedures_manager {
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void dane_pracownika(ArrayList<Integer> x) {
@@ -510,6 +539,7 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id_prac);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 			while(rs3.next()) {
 				imie = rs3.getString("imie");
 				nazwisko = rs3.getString("nazwisko");
@@ -518,6 +548,7 @@ public class Procedures_manager {
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void historia_pracownika(ArrayList<Integer> x) {
@@ -534,6 +565,7 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id_prac);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 			while(rs3.next()) {
 				zespol = rs3.getString("nazwa_zespołu");
 				status = rs3.getString("grupy_zespołów.status");
@@ -544,6 +576,7 @@ public class Procedures_manager {
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void budzet_zespolu(ArrayList<Integer> x) {
@@ -557,6 +590,7 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id_zesp);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 			while(rs3.next()) {
 				budzet = rs3.getString("budżet");
 				result.add(budzet);
@@ -564,6 +598,7 @@ public class Procedures_manager {
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void czlonkowie_zespolu(ArrayList<Integer> x) {
@@ -579,6 +614,7 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id_zesp);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 			while(rs3.next()) {
 				id_prac = rs3.getString("id_pracownika");
 				imie = rs3.getString("imie");
@@ -588,6 +624,7 @@ public class Procedures_manager {
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void ustal_wynagrodzenie(ArrayList<String> y, ArrayList<Integer> x) {
@@ -604,9 +641,11 @@ public class Procedures_manager {
 			stmt.setInt(3, wynagrodzenie);
 
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch (Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 
 	}
@@ -624,9 +663,11 @@ public class Procedures_manager {
 			stmt.setInt(3, pracownik);
 
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch (Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 
 	}
@@ -640,10 +681,12 @@ public class Procedures_manager {
 			stmt.setInt(1, id_zesp);
 			stmt.setInt(2, czas);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 			
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 				
 	}
@@ -655,9 +698,11 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement("CALL zatwierdz_wynagrodzenie(?)");
 			stmt.setInt(1, zespol);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch (Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 
 	}
@@ -669,9 +714,11 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement("CALL zatwierdz_czas_pracy(?)");
 			stmt.setInt(1, zespol);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch (Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 
 	}
@@ -685,9 +732,11 @@ public class Procedures_manager {
 			stmt.setInt(1, id_zesp);
 			stmt.setInt(2, czlonek);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 		
 	}
@@ -701,9 +750,11 @@ public class Procedures_manager {
 			stmt.setInt(1, id_zesp);
 			stmt.setInt(2, czlonek);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void projekty_zespolu(ArrayList<Integer> x) {
@@ -722,6 +773,7 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id_zesp);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 			while(rs3.next()) {
 				projekt = rs3.getString("id_projektu");
 				status = rs3.getString("status");
@@ -735,6 +787,22 @@ public class Procedures_manager {
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
+		}
+	}
+	private void dodaj_dostawce(ArrayList<String>x) {
+		System.out.println("Uruchamiam procedure dodajaca dostawce");
+		String nazwa = x.get(0);
+		String sql = "CALL Dodaj_dostawce(?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, nazwa);
+			rs3 = stmt.executeQuery();
+			sd.infoSukces();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void dodaj_klienta(ArrayList<String>x) {
@@ -745,9 +813,11 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, nazwa);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 		
 		
@@ -764,9 +834,11 @@ public class Procedures_manager {
 			stmt.setInt(2, wart);
 			stmt.setInt(3, dzial);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 		
 	}
@@ -784,10 +856,11 @@ public class Procedures_manager {
 			stmt.setString(3, produkt);
 			stmt.setInt(4, wartosc);
 			rs3 = stmt.executeQuery();
-			
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void utworz_projekt(ArrayList<String> x ,ArrayList<Integer> y) {
@@ -802,9 +875,11 @@ public class Procedures_manager {
 			stmt.setInt(2, zlecenie);
 			stmt.setString(3, nazwa);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void ustal_budzet_projektu(ArrayList<String> x, ArrayList<Integer> y) {
@@ -819,9 +894,11 @@ public class Procedures_manager {
 			stmt.setInt(2, budzet);
 			stmt.setInt(3, dzial);
 			rs3= stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void sprawdz_bilans(ArrayList<Integer> x) {
@@ -836,6 +913,7 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement("CALL sprawdz_bilans_zlecen (?)");
 			stmt.setInt(1, dzial);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 			while(rs3.next()) {
 				id_zl = rs3.getString("id_zlecenia");
 				wart_zl = rs3.getString("wartosc_zlecenia");
@@ -845,6 +923,7 @@ public class Procedures_manager {
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 
 		result.add(null);
@@ -854,6 +933,7 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement("CALL sprawdz_bilans_zespolow (?)");
 			stmt.setInt(1, dzial);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 			while(rs3.next()) {
 				id_zl = rs3.getString("id_zespołu");
 				wart_zl = rs3.getString("budżet");
@@ -863,6 +943,7 @@ public class Procedures_manager {
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 
 		result.add(null);
@@ -872,6 +953,7 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement("CALL sprawdz_bilans_projektow (?)");
 			stmt.setInt(1, dzial);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 			while(rs3.next()) {
 				id_zl = rs3.getString("id_projektu");
 				wart_zl = rs3.getString("przydzielony_budżet");
@@ -882,6 +964,7 @@ public class Procedures_manager {
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 
 		result.add(null);
@@ -891,6 +974,7 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement("SELECT sprawdz_bilans_budzetow (?) AS wynik");
 			stmt.setInt(1, dzial);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 			while (rs3.next()) {
 				id_zl = rs3.getString("wynik");
 				result.add(id_zl);
@@ -898,6 +982,7 @@ public class Procedures_manager {
 		}
 		catch (Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 
 	}
@@ -911,9 +996,11 @@ public class Procedures_manager {
 			stmt.setInt(1, zlecenie);
 			stmt.setInt(2, dzial);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void zmien_status(ArrayList<String> x, ArrayList<Integer> y) {
@@ -928,9 +1015,11 @@ public class Procedures_manager {
 			stmt.setString(2, status);
 			stmt.setInt(3, dzial);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 		
 	}
@@ -942,9 +1031,11 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement(st);
 			stmt.setInt(1, dzial);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch (Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void zm_zarzadcy_zespolu(ArrayList<String> x, ArrayList<Integer> y) {
@@ -959,9 +1050,11 @@ public class Procedures_manager {
 			stmt.setInt(2, zarzadca);
 			stmt.setInt(3, dzial);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 		
 	}
@@ -977,9 +1070,11 @@ public class Procedures_manager {
 			stmt.setString(2, nazwa);
 			stmt.setInt(3, dzial);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void rozwiaz_zespol(ArrayList<Integer> y) {
@@ -992,9 +1087,11 @@ public class Procedures_manager {
 			stmt.setInt(1, zespol);
 			stmt.setInt(2, dzial);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void korekta_danych(ArrayList<String> x, ArrayList<Integer> y) {
@@ -1002,16 +1099,23 @@ public class Procedures_manager {
 		int prac = y.get(0);
 		String atrybut = x.get(0);
 		String nowy = x.get(1);
-		String sql = "CALL korekta_danych(?,?,?)";
+
+		if (zawieraNiedozwoloneZnaki(x)) {
+			sd.infoNiedozwolone();
+			return;
+		}
+
+		String sql = "UPDATE pracownik SET " + atrybut + " = ? WHERE id_pracownika = ?";
 		try {
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, prac);
-			stmt.setString(2, atrybut);
-			stmt.setString(3, nowy);
+			stmt.setString(1, nowy);
+			stmt.setInt(2, prac);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 		
 	}
@@ -1021,17 +1125,41 @@ public class Procedures_manager {
 		int zesp = y.get(1);
 		String art = x.get(0);
 		String nowy = x.get(1);
-		String sql = "CALL korekta_historii(?,?,?)";
-		try {
-			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1,prac);
-			stmt.setInt(2, zesp);
-			stmt.setString(3, art);
-			stmt.setString(4, nowy);
-			rs3 = stmt.executeQuery();
+
+		if (zawieraNiedozwoloneZnaki(x)) {
+			sd.infoNiedozwolone();
+			return;
 		}
-		catch(Exception e) {
-			System.out.println(e);
+
+		String sql;
+		if (art.contentEquals("DELETE")) {
+			sql = "DELETE FROM grupy_zespołów WHERE pracownik = ? AND zespoł = ?";
+			try {
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1,prac);
+				stmt.setInt(2, zesp);
+				rs3 = stmt.executeQuery();
+				sd.infoSukces();
+			}
+			catch(Exception e) {
+				System.out.println(e);
+				sd.infoBlad();
+			}
+		}
+		else {
+			sql = "UPDATE grupy_zespołów SET " + art + " = ? WHERE pracownik = ? AND zespoł = ?";
+			try {
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, nowy);
+				stmt.setInt(2,prac);
+				stmt.setInt(3, zesp);
+				rs3 = stmt.executeQuery();
+				sd.infoSukces();
+			}
+			catch(Exception e) {
+				System.out.println(e);
+				sd.infoBlad();
+			}
 		}
 	}
 	private void dodaj_dzial(ArrayList<String> x, ArrayList<Integer> y) {
@@ -1044,9 +1172,11 @@ public class Procedures_manager {
 			stmt.setInt(1, zarzadca);
 			stmt.setString(2, nazwa);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void zwolnij_pracownika(ArrayList<Integer> x) {
@@ -1057,9 +1187,11 @@ public class Procedures_manager {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, pracownik);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void zm_zarzadcy_dzialu(ArrayList<Integer> x) {
@@ -1072,9 +1204,11 @@ public class Procedures_manager {
 			stmt.setInt(1, dzial);
 			stmt.setInt(2, pracownik);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 	}
 	private void przeniesienie_zlecenia(ArrayList<String> x, ArrayList<Integer> y) {
@@ -1087,9 +1221,11 @@ public class Procedures_manager {
 			stmt.setInt(1, zlecenie);
 			stmt.setInt(2, dzial);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch(Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 		
 	}
@@ -1105,9 +1241,11 @@ public class Procedures_manager {
 			stmt.setInt(1, dzialZamykany);
 			stmt.setInt(2, dzialDocelowy);
 			rs3 = stmt.executeQuery();
+			sd.infoSukces();
 		}
 		catch (Exception e) {
 			System.out.println(e);
+			sd.infoBlad();
 		}
 
 	}
@@ -1119,6 +1257,34 @@ public class Procedures_manager {
 
 		result = new ArrayList<>();
 
+		if (zawieraNiedozwoloneZnaki(arg)) {
+			sd.infoNiedozwolone();
+			return;
+		}
+
+		String zapytanie = "SELECT " + arg.get(0) + " FROM " + arg.get(1) + " WHERE " + arg.get(2);
+
+		try {
+			stmt = conn.prepareStatement(zapytanie);
+			rs3 = stmt.executeQuery();
+			sd.infoSukces();
+			String kol = arg.get(0);
+			result.add(kol);
+			while (rs3.next()) {
+				result.add(rs3.getString(kol));
+			}
+		}
+		catch (SQLException sqlx) {
+			sqlx.printStackTrace();
+			sd.infoBlad();
+		}
+
+	}
+	private void wyk_backup() {
+		System.out.println("Wykonuje backup bazy danych");
+	}
+
+	private boolean zawieraNiedozwoloneZnaki(ArrayList<String> args) {
 		LinkedList<String> niedozwolone = new LinkedList<>();
 		niedozwolone.add("UPDATE");
 		niedozwolone.add("INSERT");
@@ -1132,32 +1298,57 @@ public class Procedures_manager {
 		niedozwolone.add("\"");
 		niedozwolone.add("'");
 
-		for (String a : arg) {
+		for (String a : args) {
 			for (String n : niedozwolone) {
 				if (a.toUpperCase().contains(n)) {
-					System.out.println("Niedozwolone znaki!");
-					return; // TODO: throw Exception
+					return true;
 				}
 			}
 		}
 
-		String zapytanie = "SELECT " + arg.get(0) + " FROM " + arg.get(1) + " WHERE " + arg.get(2);
-
-		try {
-			stmt = conn.prepareStatement(zapytanie);
-			rs3 = stmt.executeQuery();
-			String kol = arg.get(0);
-			result.add(kol);
-			while (rs3.next()) {
-				result.add(rs3.getString(kol));
-			}
-		}
-		catch (SQLException sqlx) {
-			sqlx.printStackTrace();
-		}
+		return false;
 
 	}
-	private void wyk_backup() {
-		System.out.println("Wykonuje backup bazy danych");
+
+	private class StatusDialog extends JDialog {
+		private String niedozwolone = "Wpisano niedozwolone znaki!";
+		private String blad = "Nie udalo sie wykonac zapytania";
+		private String sukces = "Zapytanie wykonane";
+		private JTextField info = new JTextField();
+
+		public StatusDialog() {
+			setLocationRelativeTo(null);
+			setLayout(new GridLayout(2, 1));
+			setModal(true);
+			setSize(200, 100);
+			setTitle("Status");
+
+			add(info);
+
+			JButton ok = new JButton("Ok");
+			ok.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					setVisible(false);
+				}
+			});
+			add(ok);
+		}
+
+		public void infoSukces() {
+			info.setText(sukces);
+			setVisible(true);
+		}
+
+		public void infoBlad() {
+			info.setText(blad);
+			setVisible(true);
+		}
+
+		public void infoNiedozwolone() {
+			info.setText(niedozwolone);
+			setVisible(true);
+		}
+
 	}
 }

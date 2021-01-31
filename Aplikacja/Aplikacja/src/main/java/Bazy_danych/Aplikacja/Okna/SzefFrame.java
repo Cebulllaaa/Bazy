@@ -92,25 +92,19 @@ public class SzefFrame extends ZarzDzialuFrame {
 			if (akcja.contentEquals("dodaj dzial")) {
 				ComDialog comDialog = new ComDialog(2,2);
 
-				JTextField info0 = new JTextField("ID zarzadcy");
-				JTextField info1 = new JTextField("nazwa dzialu");
+				JTextField info0 = new JTextField("nazwa dzialu");
 				JTextField data0 = new JTextField();
-				JTextField data1 = new JTextField();
 
 				info0.setEditable(false);
-				info1.setEditable(false);
 
 				comDialog.dodaj(info0);
-				comDialog.dodaj(info1);
 				comDialog.dodaj(data0);
-				comDialog.dodaj(data1);
 
 				comDialog.setVisible(true);
 
 				ArrayList<String> args = new ArrayList<>();
 
 				args.add(data0.getText());
-				args.add(data1.getText());
 
 				connection.use_procedure(Procedures.DODAJ_DZIAL, args, accesses, effectiveIDs);
 				wykonano = true;
@@ -122,70 +116,8 @@ public class SzefFrame extends ZarzDzialuFrame {
 
 				JTextField info0 = new JTextField("imie pracownika");
 				JTextField info1 = new JTextField("nazwisko pracownika");
-				JTextField data0 = new JTextField();
-				JTextField data1 = new JTextField();
-
-				info0.setEditable(false);
-				info1.setEditable(false);
-
-				comDialog.dodaj(info0);
-				comDialog.dodaj(info1);
-				comDialog.dodaj(data0);
-				comDialog.dodaj(data1);
-
-				comDialog.setVisible(true);
-
-				ArrayList<String> args = new ArrayList<>();
-
-				args.add(data0.getText());
-				args.add(data1.getText());
-
-				connection.use_procedure(Procedures.DODAJ_PRACOWNIKA, args, accesses, effectiveIDs);
-				wykonano = true;
-				return;
-			}
-
-			if (akcja.contentEquals("korekta danych")) {
-				ComDialog comDialog = new ComDialog(2,3);
-
-				JTextField info0 = new JTextField("ID pracownika");
-				JTextField info1 = new JTextField("nazwa atrybutu");
-				JTextField info2 = new JTextField("wartosc atrybutu");
-				JTextField data0 = new JTextField();
-				JTextField data1 = new JTextField();
-				JTextField data2 = new JTextField();
-
-				info0.setEditable(false);
-				info1.setEditable(false);
-				info2.setEditable(false);
-
-				comDialog.dodaj(info0);
-				comDialog.dodaj(info1);
-				comDialog.dodaj(info2);
-				comDialog.dodaj(data0);
-				comDialog.dodaj(data1);
-				comDialog.dodaj(data2);
-
-				comDialog.setVisible(true);
-
-				ArrayList<String> args = new ArrayList<>();
-
-				args.add(data0.getText());
-				args.add(data1.getText());
-				args.add(data2.getText());
-
-				connection.use_procedure(Procedures.KOREKTA_DANYCH, args, accesses, effectiveIDs);
-				wykonano = true;
-				return;
-			}
-
-			if (akcja.contentEquals("korekta historii")) {
-				ComDialog comDialog = new ComDialog(2,3);
-
-				JTextField info0 = new JTextField("ID pracownika");
-				JTextField info1 = new JTextField("ID zespolu");
-				JTextField info2 = new JTextField("nazwa atrybutu");
-				JTextField info3 = new JTextField("wartosc atrybutu");
+				JTextField info2 = new JTextField("login pracownika");
+				JTextField info3 = new JTextField("haslo pracownika");
 				JTextField data0 = new JTextField();
 				JTextField data1 = new JTextField();
 				JTextField data2 = new JTextField();
@@ -213,6 +145,62 @@ public class SzefFrame extends ZarzDzialuFrame {
 				args.add(data1.getText());
 				args.add(data2.getText());
 				args.add(data3.getText());
+
+				connection.use_procedure(Procedures.DODAJ_PRACOWNIKA, args, accesses, effectiveIDs);
+				wykonano = true;
+				return;
+			}
+
+			if (akcja.contentEquals("korekta danych")) {
+				ComDialog comDialog = new ComDialog(2,3);
+
+				JTextField info0 = new JTextField("nazwa atrybutu");
+				JTextField info1 = new JTextField("wartosc atrybutu");
+				JTextField data0 = new JTextField();
+				JTextField data1 = new JTextField();
+
+				info0.setEditable(false);
+				info1.setEditable(false);
+
+				comDialog.dodaj(info0);
+				comDialog.dodaj(info1);
+				comDialog.dodaj(data0);
+				comDialog.dodaj(data1);
+
+				comDialog.setVisible(true);
+
+				ArrayList<String> args = new ArrayList<>();
+
+				args.add(data0.getText());
+				args.add(data1.getText());
+
+				connection.use_procedure(Procedures.KOREKTA_DANYCH, args, accesses, effectiveIDs);
+				wykonano = true;
+				return;
+			}
+
+			if (akcja.contentEquals("korekta historii")) {
+				ComDialog comDialog = new ComDialog(2,3);
+
+				JTextField info0 = new JTextField("nazwa atrybutu");
+				JTextField info1 = new JTextField("wartosc atrybutu");
+				JTextField data0 = new JTextField();
+				JTextField data1 = new JTextField();
+
+				info0.setEditable(false);
+				info1.setEditable(false);
+
+				comDialog.dodaj(info0);
+				comDialog.dodaj(info1);
+				comDialog.dodaj(data0);
+				comDialog.dodaj(data1);
+
+				comDialog.setVisible(true);
+
+				ArrayList<String> args = new ArrayList<>();
+
+				args.add(data0.getText());
+				args.add(data1.getText());
 
 				connection.use_procedure(Procedures.KOREKTA_HISTORII, args, accesses, effectiveIDs);
 				wykonano = true;
@@ -242,7 +230,7 @@ public class SzefFrame extends ZarzDzialuFrame {
 			}
 
 			if (akcja.contentEquals("ZM zarzadcy dzialu")) {
-				ComDialog comDialog = new ComDialog(2,2);
+/*				ComDialog comDialog = new ComDialog(2,2);
 
 				JTextField info0 = new JTextField("ID nowego zarzadcy");
 				JTextField data0 = new JTextField();
@@ -257,8 +245,8 @@ public class SzefFrame extends ZarzDzialuFrame {
 				ArrayList<String> args = new ArrayList<>();
 
 				args.add(data0.getText());
-
-				connection.use_procedure(Procedures.ZM_ZARZADCY_DZIALU, args, accesses, effectiveIDs);
+*/
+				connection.use_procedure(Procedures.ZM_ZARZADCY_DZIALU, null, accesses, effectiveIDs);
 				wykonano = true;
 				return;
 			}
@@ -267,24 +255,18 @@ public class SzefFrame extends ZarzDzialuFrame {
 				ComDialog comDialog = new ComDialog(2,2);
 
 				JTextField info0 = new JTextField("ID zlecenia");
-				JTextField info1 = new JTextField("ID dzialu");
 				JTextField data0 = new JTextField();
-				JTextField data1 = new JTextField();
 
 				info0.setEditable(false);
-				info1.setEditable(false);
 
 				comDialog.dodaj(info0);
-				comDialog.dodaj(info1);
 				comDialog.dodaj(data0);
-				comDialog.dodaj(data1);
 
 				comDialog.setVisible(true);
 
 				ArrayList<String> args = new ArrayList<>();
 
 				args.add(data0.getText());
-				args.add(data1.getText());
 
 				connection.use_procedure(Procedures.PRZENIESIENIE_ZLECENIA, args, accesses, effectiveIDs);
 				wykonano = true;
